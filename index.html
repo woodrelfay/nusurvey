@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>当代女大学生创业就业趋势调研 · 调查问卷</title>
+<style>
+:root {
+  --bg: #faf8f6;
+  --card: #fff;
+  --text: #1a1a2e;
+  --text2: #555;
+  --muted: #999;
+  --border: #e5e0db;
+  --accent: #b7476e;
+  --accent2: #e8739b;
+  --accent-light: #fef5f7;
+  --purple: #5b3a6e;
+  --green: #3d7a5c;
+  --red: #c44a5e;
+  --gold: #b87a20;
+  --radius: 10px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 6px 20px rgba(0,0,0,0.04);
+  --font: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", -apple-system, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  background: linear-gradient(180deg, #fdf8fa 0%, #faf8f6 100%);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(160deg, #1a0f16 0%, #2d1525 40%, #4a2348 100%);
+  color: #fff; text-align: center; padding: 50px 0 40px; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -120px; right: -120px;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(183,71,110,0.2) 0%, transparent 70%); border-radius: 50%;
+}
+.hero-inner { max-width: 700px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+.hero h1 { font-size: 1.8em; font-weight: 800; letter-spacing: 2px; margin-bottom: 6px; }
+.hero .sub { font-size: 0.9em; opacity: 0.7; }
+
+/* Progress */
+.progress-wrap {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.94); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border); padding: 14px 20px;
+}
+.progress-inner { max-width: 700px; margin: 0 auto; display: flex; align-items: center; gap: 12px; }
+.progress-bar-outer { flex: 1; height: 6px; background: #eee; border-radius: 6px; overflow: hidden; }
+.progress-bar-inner { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 6px; transition: width 0.4s; }
+.progress-text { font-size: 0.85em; font-weight: 600; color: var(--accent); white-space: nowrap; }
+
+/* Main */
+.container { max-width: 720px; margin: 0 auto; padding: 28px 20px 60px; }
+
+/* Section */
+.section-label {
+  font-size: 0.78em; font-weight: 700; letter-spacing: 2px; color: var(--accent);
+  text-transform: uppercase; margin: 36px 0 6px;
+}
+.section-label:first-of-type { margin-top: 0; }
+
+/* Question card */
+.q-card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 22px 26px; margin: 12px 0; border: 1px solid var(--border);
+  transition: border-color 0.2s;
+  position: relative;
+}
+.q-card.active { border-color: var(--accent2); box-shadow: 0 0 0 3px rgba(183,71,110,0.06); }
+.q-card.error { border-color: var(--red); background: #fffafa; }
+.q-card .q-num {
+  display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 0.78em;
+  font-weight: 700; background: var(--accent-light); color: var(--accent); margin-bottom: 8px;
+}
+.q-card .q-num.required::after { content: ' *'; color: var(--red); font-size: 0.9em; }
+.q-card .q-title { font-weight: 600; font-size: 1.02em; margin-bottom: 12px; color: var(--text); }
+.q-card .q-hint { font-size: 0.82em; color: var(--muted); margin-bottom: 10px; font-style: italic; }
+
+/* Radio / Checkbox */
+.option-list { list-style: none; }
+.option-list li { margin: 4px 0; }
+.option-item {
+  display: flex; align-items: flex-start; gap: 10px; padding: 8px 12px;
+  border-radius: 6px; cursor: pointer; transition: background 0.15s;
+}
+.option-item:hover { background: #fdf7f9; }
+.option-item input[type="radio"],
+.option-item input[type="checkbox"] {
+  margin-top: 3px; accent-color: var(--accent); flex-shrink: 0;
+  width: 16px; height: 16px;
+}
+.option-item label { cursor: pointer; flex: 1; }
+
+/* Text input */
+.text-input {
+  width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 6px;
+  font-size: 0.92em; font-family: var(--font); margin-top: 6px; transition: border-color 0.2s;
+}
+.text-input:focus { outline: none; border-color: var(--accent2); box-shadow: 0 0 0 3px rgba(183,71,110,0.06); }
+.text-input.short { max-width: 280px; }
+
+/* Matrix table */
+.matrix-table { width: 100%; border-collapse: collapse; font-size: 0.88em; margin-top: 8px; }
+.matrix-table th, .matrix-table td { padding: 8px 10px; text-align: center; border-bottom: 1px solid #f3eeec; }
+.matrix-table th { font-weight: 600; font-size: 0.82em; color: var(--text2); }
+.matrix-table th:first-child { text-align: left; }
+.matrix-table td:first-child { text-align: left; font-weight: 500; }
+.matrix-table input[type="radio"] { accent-color: var(--accent); }
+
+/* Sort input */
+.sort-input { width: 100%; max-width: 400px; padding: 10px 14px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.92em; font-family: var(--font); }
+.sort-input:focus { outline: none; border-color: var(--accent2); }
+.sort-example { font-size: 0.82em; color: var(--muted); margin-top: 4px; }
+
+/* Textarea */
+.q-textarea { width: 100%; min-height: 100px; padding: 10px 14px; border: 1px solid var(--border); border-radius: 6px; font-size: 0.92em; font-family: var(--font); resize: vertical; }
+.q-textarea:focus { outline: none; border-color: var(--accent2); }
+
+/* Buttons */
+.btn-row { display: flex; gap: 12px; justify-content: center; margin: 32px 0; }
+.btn {
+  padding: 12px 36px; border-radius: 8px; font-size: 1em; font-weight: 600;
+  cursor: pointer; border: none; transition: all 0.2s; font-family: var(--font);
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: #9e3c5d; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(183,71,110,0.3); }
+.btn-secondary { background: #fff; color: var(--text2); border: 1px solid var(--border); }
+.btn-secondary:hover { background: #f8f8f8; }
+
+/* Result modal */
+.modal-overlay {
+  display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5); z-index: 999; justify-content: center; align-items: center;
+}
+.modal-overlay.show { display: flex; }
+.modal {
+  background: #fff; border-radius: var(--radius); padding: 32px; max-width: 500px;
+  width: 90%; text-align: center; box-shadow: 0 20px 48px rgba(0,0,0,0.2);
+}
+.modal .icon { font-size: 3em; margin-bottom: 12px; }
+.modal h3 { margin-bottom: 8px; }
+.modal p { color: var(--text2); font-size: 0.92em; line-height: 1.7; }
+.modal .err-list { text-align: left; margin: 16px 0; font-size: 0.88em; color: var(--red); }
+.modal .err-list li { margin: 4px 0; }
+.modal .btn { margin-top: 16px; }
+
+/* Tooltip */
+.verify-tag {
+  display: inline-block; font-size: 0.72em; padding: 1px 8px; border-radius: 8px;
+  font-weight: 600; margin-left: 8px; vertical-align: middle;
+}
+.verify-tag.a { background: #e4eef8; color: #2d5a8b; }
+.verify-tag.b { background: #fef3e0; color: #b87a20; }
+.verify-tag.c { background: #e8f4f0; color: #2d6a4a; }
+
+/* Gender screen overlay */
+.screen-overlay {
+  display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6); z-index: 999; justify-content: center; align-items: center;
+}
+.screen-overlay.show { display: flex; }
+.screen-box { background: #fff; border-radius: var(--radius); padding: 40px; text-align: center; max-width: 420px; width: 90%; }
+.screen-box .icon { font-size: 3em; margin-bottom: 12px; }
+
+/* Responsive */
+@media (max-width: 600px) {
+  .hero h1 { font-size: 1.3em; }
+  .container { padding: 16px 10px 40px; }
+  .q-card { padding: 16px 14px; }
+  .btn-row { flex-direction: column; align-items: center; }
+  .matrix-table { font-size: 0.75em; }
+}
+
+.skip-logic-note { display: none; font-size: 0.82em; color: var(--muted); margin-top: 6px; font-style: italic; }
+</style>
+</head>
+<body>
+
+<!-- Gender Screen -->
+<div class="screen-overlay" id="genderScreen">
+  <div class="screen-box">
+    <div class="icon">👋</div>
+    <h3>感谢您的关注</h3>
+    <p>本次调研仅面向<strong>女性群体</strong>，您的关注对我们同样重要。问卷到此结束，谢谢！</p>
+    <button class="btn btn-primary" onclick="document.getElementById('genderScreen').classList.remove('show')" style="margin-top:16px;">知道了</button>
+  </div>
+</div>
+
+<!-- Result Modal -->
+<div class="modal-overlay" id="resultModal">
+  <div class="modal" id="resultContent"></div>
+</div>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-inner">
+    <h1>当代女大学生创业就业趋势调研</h1>
+    <p class="sub">广州市妇联委托 · 2026年度调查研究课题<br>填写约需 5-8 分钟 · 匿名保密</p>
+  </div>
+</header>
+
+<!-- Progress -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <span style="font-size:0.85em;color:var(--text2)">完成进度</span>
+    <div class="progress-bar-outer"><div class="progress-bar-inner" id="progressBar" style="width:0%"></div></div>
+    <span class="progress-text" id="progressText">0/25</span>
+  </div>
+</div>
+
+<!-- Form -->
+<div class="container">
+<form id="surveyForm" autocomplete="off">
+
+<!-- ===== PART 1: BASIC INFO ===== -->
+<div class="section-label">第一部分 · 基本信息</div>
+
+<!-- Q1 -->
+<div class="q-card" id="q1-card">
+  <div class="q-num required">Q1 · 筛选题</div>
+  <div class="q-title">您的性别是？</div>
+  <ul class="option-list">
+    <li class="option-item"><input type="radio" name="q1" id="q1a" value="A"><label for="q1a">A. 女</label></li>
+    <li class="option-item"><input type="radio" name="q1" id="q1b" value="B"><label for="q1b">B. 男</label></li>
+  </ul>
+</div>
+
+<!-- Q2 -->
+<div class="q-card" id="q2-card">
+  <div class="q-num required">Q2</div>
+  <div class="q-title">您目前就读的年级是？</div>
+  <ul class="option-list">
+    <li class="option-item"><input type="radio" name="q2" id="q2a" value="A"><label for="q2a">A. 大一</label></li>
+    <li class="option-item"><input type="radio" name="q2" id="q2b" value="B"><label for="q2b">B. 大二</label></li>
+    <li class="option-item"><input type="radio" name="q2" id="q2c" value="C"><label for="q2c">C. 大三</label></li>
+    <li class="option-item"><input type="radio" name="q2" id="q2d" value="D"><label for="q2d">D. 大四/大五（应届毕业生）</label></li>
+    <li class="option-item"><input type="radio" name="q2" id="q2e" value="E"><label for="q2e">E. 硕士研究生</label></li>
+    <li class="option-item"><input type="radio" name="q2" id="q2f" value="F"><label for="q2f">F. 博士研究生</label></li>
+    <li class="option-item"><input type="radio" name="q2" id="q2g" value="G"><label for="q2g">G. 已毕业（毕业年份：</label><input type="text" class="text-input short" id="q2g_year" placeholder="请填写年份" style="display:inline-block;margin-left:4px;width:100px;"></li>
+  </ul>
+</div>
+
+<!-- Q3 -->
+<div class="q-card" id="q3-card">
+  <div class="q-num required">Q3</div>
+  <div class="q-title">您就读的院校类型是？</div>
+  <ul class="option-list">
+    <li class="option-item"><input type="radio" name="q3" id="q3a" value="A"><label for="q3a">A. 双一流/985/211高校</label></li>
+    <li class="option-item"><input type="radio" name="q3" id="q3b" value="B"><label for="q3b">B. 普通公办本科</label></li>
+    <li class="option-item"><input type="radio" name="q3" id="q3c" value="C"><label for="q3c">C. 民办/独立学院本科</label></li>
+    <li class="option-item"><input type="radio" name="q3" id="q3d" value="D"><label for="q3d">D. 高职高专院校</label></li>
+    <li class="option-item"><input type="radio" name="q3" id="q3e" value="E"><label for="q3e">E. 其他：</label><input type="text" class="text-input short" id="q3e_text" placeholder="请注明" style="display:inline-block;margin-left:4px;width:150px;"></li>
+  </ul>
+</div>
+
+<!-- Q4 -->
+<div class="q-card" id="q4-card">
+  <div class="q-num required">Q4</div>
+  <div class="q-title">您的专业所属学科门类是？</div>
+  <ul class="option-list">
+    <li class="option-item"><input type="radio" name="q4" id="q4a" value="A"><label for="q4a">A. 理学（数学、物理、化学、生物等）</label></li>
+    <li class="option-item"><input type="radio" name="q4" id="q4b" value="B"><label for="q4b">B. 工学（计算机、电子、机械、土木、化工等）</label></li>
+    <li class="option-item"><input type="radio" name="q4" id="q4c" value="C"><label for="q4c">C. 医学/药学/护理学</label></li>
+    <li class="option-item"><input type="radio" name="q4" id="q4d" value="D"><label for="q4d">D. 经济学/管理学（含金融、会计、工商管理等）</label></li>
+    <li class="option-item"><input type="radio" name="q4" id="q4e" value="E"><label for="q4e">E. 法学/社会学/政治学</label></li>
+    <li class="option-item"><input type="radio" name="q4" id="q4f" value="F"><label for="q4f">F. 文学/历史学/哲学</label></li>
+    <li class="option-item"><input type="radio" name="q4" id="q4g" value="G"><label for="q4g">G. 教育学（含学前、小学教育等）</label></li>
+    <li class="option-item"><input type="radio" name="q4" id="q4h" value="H"><label for="q4h">H. 艺术学/设计学/传媒</label></li>
+    <li class="option-item"><input type="radio" name="q4" id="q4i" value="I"><label for="q4i">I. 农学</label></li>
+    <li class="option-item"><input type="radio" name="q4" id="q4j" value="J"><label for="q4j">J. 其他：</label><input type="text" class="text-input short" id="q4j_text" placeholder="请注明" style="display:inline-block;margin-left:4px;width:150px;"></li>
+  </ul>
+</div>
+
+<!-- ===== PART 2: FUTURE PLAN ===== -->
+<div class="section-label">第二部分 · 毕业去向与规划</div>
+
+<!-- Q5 -->
+<div class="q-card" id="q5-card">
+  <div class="q-num required">Q5</div>
+  <div class="q-title">您对自己所学专业的就业前景如何评价？</div>
+  <ul class="option-list">
+    <li class="option-item"><input type="radio" name="q5" id="q5a" value="A"><label for="q5a">A. 非常好，方向清晰、岗位充足</label></li>
+    <li class="option-item"><input type="radio" name="q5" id="q5b" value="B"><label for="q5b">B. 比较好，有基本的就业方向</label></li>
+    <li class="option-item"><input type="radio" name="q5" id="q5c" value="C"><label for="q5c">C. 一般，需要跨专业或综合能力才有竞争力</label></li>
+    <li class="option-item"><input type="radio" name="q5" id="q5d" value="D"><label for="q5d">D. 比较差，本专业对口岗位少、薪资低</label></li>
+    <li class="option-item"><input type="radio" name="q5" id="q5e" value="E"><label for="q5e">E. 非常差，几乎没有对口就业方向</label></li>
+  </ul>
+</div>
+
+<!-- Q6 -->
+<div class="q-card" id="q6-card">
+  <div class="q-num required">Q6 <span class="verify-tag a">验证锚点A</span></div>
+  <div class="q-title">毕业后，您的<strong>第一选择</strong>是什么？</div>
+  <ul class="option-list">
+    <li class="option-item"><input type="radio" name="q6" id="q6a" value="A"><label for="q6a">A. 直接就业（进入企业/机构工作）</label></li>
+    <li class="option-item"><input type="radio" name="q6" id="q6b" value="B"><label for="q6b">B. 考公务员/事业单位/国企</label></li>
+    <li class="option-item"><input type="radio" name="q6" id="q6c" value="C"><label for="q6c">C. 考研/继续深造</label></li>
+    <li class="option-item"><input type="radio" name="q6" id="q6d" value="D"><label for="q6d">D. 自主创业/自由职业</label></li>
+    <li class="option-item"><input type="radio" name="q6" id="q6e" value="E"><label for="q6e">E. 出国留学</label></li>
+    <li class="option-item"><input type="radio" name="q6" id="q6f" value="F"><label for="q6f">F. 先gap一段时间，还没想好</label></li>
+    <li class="option-item"><input type="radio" name="q6" id="q6g" value="G"><label for="q6g">G. 其他：</label><input type="text" class="text-input short" id="q6g_text" placeholder="请注明" style="display:inline-block;margin-left:4px;width:150px;"></li>
+  </ul>
+</div>
+
+<!-- Q7 -->
+<div class="q-card" id="q7-card">
+  <div class="q-num required">Q7</div>
+  <div class="q-title">您做出上述选择的最主要原因是什么？</div>
+  <ul class="option-list">
+    <li class="option-item"><input type="radio" name="q7" id="q7a" value="A"><label for="q7a">A. 个人兴趣与长期职业规划</label></li>
+    <li class="option-item"><input type="radio" name="q7" id="q7b" value="B"><label for="q7b">B. 家人期望与社会压力</label></li>
+    <li class="option-item"><input type="radio" name="q7" id="q7c" value="C"><label for="q7c">C. 专业对口，自然选择</label></li>
+    <li class="option-item"><input type="radio" name="q7" id="q7d" value="D"><label for="q7d">D. 经济压力，需要尽快有收入</label></li>
+    <li class="option-item"><input type="radio" name="q7" id="q7e" value="E"><label for="q7e">E. 对就业市场没有信心，先缓冲/观望</label></li>
+    <li class="option-item"><input type="radio" name="q7" id="q7f" value="F"><label for="q7f">F. 跟随身边大多数人的选择</label></li>
+    <li class="option-item"><input type="radio" name="q7" id="q7g" value="G"><label for="q7g">G. 其他：</label><input type="text" class="text-input short" id="q7g_text" placeholder="请注明" style="display:inline-block;margin-left:4px;width:150px;"></li>
+  </ul>
+</div>
+
+<!-- Q8 -->
+<div class="q-card" id="q8-card">
+  <div class="q-num required">Q8</div>
+  <div class="q-title">如果选择考公/考编（或正在准备），以下哪项最接近您的驱动因素？</div>
+  <div class="q-hint">如不打算考公/考编，请选择最后一项</div>
+  <ul class="option-list">
+    <li class="option-item"><input type="radio" name="q8" id="q8a" value="A"><label for="q8a">A. 追求稳定编制和福利保障</label></li>
+    <li class="option-item"><input type="radio" name="q8" id="q8b" value="B"><label for="q8b">B. 一次考上终身稳定，比读研更划算</label></li>
+    <li class="option-item"><input type="radio" name="q8" id="q8c" value="C"><label for="q8c">C. 家人强烈建议/要求</label></li>
+    <li class="option-item"><input type="radio" name="q8" id="q8d" value="D"><label for="q8d">D. 专业适合考公（如法学、汉语言、公共管理等）</label></li>
+    <li class="option-item"><input type="radio" name="q8" id="q8e" value="E"><label for="q8e">E. 对私企/市场化就业缺乏信心</label></li>
+    <li class="option-item"><input type="radio" name="q8" id="q8f" value="F"><label for="q8f">F. 年龄焦虑，想趁早"上岸"</label></li>
+    <li class="option-item"><input type="radio" name="q8" id="q8g" value="G"><label for="q8g">G. <strong>不打算考公/考编</strong></label></li>
+  </ul>
+</div>
+
+<!-- Q9 -->
+<div class="q-card" id="q9-card">
+  <div class="q-num required">Q9 <span class="verify-tag a">验证锚点A对照</span></div>
+  <div class="q-title">您目前是否正在准备研究生考试？</div>
+  <ul class="option-list">
+    <li class="option-item"><input type="radio" name="q9" id="q9a" value="A"><label for="q9a">A. 是，正在备考</label></li>
+    <li class="option-item"><input type="radio" name="q9" id="q9b" value="B"><label for="q9b">B. 曾经备考，已放弃</label></li>
+    <li class="option-item"><input type="radio" name="q9" id="q9c" value="C"><label for="q9c">C. 考虑过，但决定不考了</label></li>
+    <li class="option-item"><input type="radio" name="q9" id="q9d" value="D"><label for="q9d">D. 从未考虑过考研</label></li>
+  </ul>
+</div>
+
+<!-- Q10 -->
+<div class="q-card" id="q10-card">
+  <div class="q-num required">Q10</div>
+  <div class="q-title">您目前是否正在准备公务员/事业单位考试？</div>
+  <ul class="option-list">
+    <li class="option-item"><input type="radio" name="q10" id="q10a" value="A"><label for="q10a">A. 是，正在积极备考（已参加或准备参加近一年内的考试）</label></li>
+    <li class="option-item"><input type="radio" name="q10" id="q10b" value="B"><label for="q10b">B. 是，偶尔准备，但投入精力不多</label></li>
+    <li class="option-item"><input type="radio" name="q10" id="q10c" value="C"><label for="q10c">C. 曾经考过，暂时不考了</label></li>
+    <li class="option-item"><input type="radio" name="q10" id="q10d" value="D"><label for="q10d">D. 考虑过，但还没有开始准备</label></li>
+    <li class="option-item"><input type="radio" name="q10" id="q10e" value="E"><label for="q10e">E. 从未考虑过考公/考编</label></li>
+  </ul>
+</div>
+
+<!-- ===== PART 3: EMPLOYMENT ===== -->
+<div class="section-label">第三部分 · 就业认知与期望</div>
+
+<!-- Q11 -->
+<div class="q-card" id="q11-card">
+  <div class="q-num required">Q11 <span class="verify-tag b">验证锚点B</span></div>
+  <div class="q-title">您期望毕业后第一份工作的<strong>税前月薪</strong>是多少？</div>
+  <ul class="option-list">
+    <li class="option-item"><input type="radio" name="q11" id="q11a" value="A"><label for="q11a">A. 3,000元以下</label></li>
+    <li class="option-item"><input type="radio" name="q11" id="q11b" value="B"><label for="q11b">B. 3,000 - 4,999元</label></li>
+    <li class="option-item"><input type="radio" name="q11" id="q11c" value="C"><label for="q11c">C. 5,000 - 6,999元</label></li>
+    <li class="option-item"><input type="radio" name="q11" id="q11d" value="D"><label for="q11d">D. 7,000 - 9,999元</label></li>
+    <li class="option-item"><input type="radio" name="q11" id="q11e" value="E"><label for="q11e">E. 10,000 - 14,999元</label></li>
+    <li class="option-item"><input type="radio" name="q11" id="q11f" value="F"><label for="q11f">F. 15,000 - 19,999元</label></li>
+    <li class="option-item"><input type="radio" name="q11" id="q11g" value="G"><label for="q11g">G. 20,000元及以上</label></li>
+  </ul>
+</div>
+
+<!-- Q12 -->
+<div class="q-card" id="q12-card">
+  <div class="q-num required">Q12</div>
+  <div class="q-title">您首选的就业行业是？</div>
+  <ul class="option-list">
+    <li class="option-item"><input type="radio" name="q12" id="q12a" value="A"><label for="q12a">A. 教育/培训/科研</label></li>
+    <li class="option-item"><input type="radio" name="q12" id="q12b" value="B"><label for="q12b">B. 金融/保险/银行</label></li>
+    <li class="option-item"><input type="radio" name="q12" id="q12c" value="C"><label for="q12c">C. IT/互联网/科技</label></li>
+    <li class="option-item"><input type="radio" name="q12" id="q12d" value="D"><label for="q12d">D. 医疗/护理/健康</label></li>
+    <li class="option-item"><input type="radio" name="q12" id="q12e" value="E"><label for="q12e">E. 政府机关/事业单位</label></li>
+    <li class="option-item"><input type="radio" name="q12" id="q12f" value="F"><label for="q12f">F. 文化传媒/新媒体/广告</label></li>
+    <li class="option-item"><input type="radio" name="q12" id="q12g" value="G"><label for="q12g">G. 制造业/建筑业/房地产</label></li>
+    <li class="option-item"><input type="radio" name="q12" id="q12h" value="H"><label for="q12h">H. 批发零售/电商/贸易</label></li>
+    <li class="option-item"><input type="radio" name="q12" id="q12i" value="I"><label for="q12i">I. 专业服务（法律/会计/咨询/人力资源）</label></li>
+    <li class="option-item"><input type="radio" name="q12" id="q12j" value="J"><label for="q12j">J. 灵活就业/自由职业（主播、博主、外卖等）</label></li>
+    <li class="option-item"><input type="radio" name="q12" id="q12k" value="K"><label for="q12k">K. 还没想好 / 无所谓</label></li>
+    <li class="option-item"><input type="radio" name="q12" id="q12l" value="L"><label for="q12l">L. 其他：</label><input type="text" class="text-input short" id="q12l_text" placeholder="请注明" style="display:inline-block;margin-left:4px;width:150px;"></li>
+  </ul>
+</div>
+
+<!-- Q13 -->
+<div class="q-card" id="q13-card">
+  <div class="q-num required">Q13</div>
+  <div class="q-title">在择业时，请对以下因素按重要性排序：</div>
+  <div class="q-hint">请在下方输入框中按重要性从高到低填写字母，用 > 连接。例如：A > C > B > E > D > F</div>
+  <ul style="list-style:none;margin-bottom:10px;font-size:0.9em;">
+    <li>A. 薪资待遇 &nbsp; B. 工作稳定性与编制 &nbsp; C. 个人兴趣与成长空间</li>
+    <li>D. 工作地点与通勤 &nbsp; E. 工作强度与加班文化 &nbsp; F. 行业前景与公司规模</li>
+  </ul>
+  <input type="text" class="sort-input" name="q13" id="q13" placeholder="例如：A > C > B > E > D > F">
+</div>
+
+<!-- ===== PART 4: DISCRIMINATION ===== -->
+<div class="section-label">第四部分 · 就业歧视与职场感知</div>
+
+<!-- Q14 -->
+<div class="q-card" id="q14-card">
+  <div class="q-num required">Q14 <span class="verify-tag c">验证锚点C</span></div>
+  <div class="q-title">您或您身边的女性同学，在求职/实习中是否遭遇过以下情况？<strong>（多选）</strong></div>
+  <ul class="option-list">
+    <li class="option-item"><input type="checkbox" name="q14" id="q14a" value="A"><label for="q14a">A. 从未遭遇过任何性别相关的不公正对待</label></li>
+    <li class="option-item"><input type="checkbox" name="q14" id="q14b" value="B"><label for="q14b">B. 招聘信息明确写"男性优先"或"仅限男性"</label></li>
+    <li class="option-item"><input type="checkbox" name="q14" id="q14c" value="C"><label for="q14c">C. 面试中被问及是否已婚/是否有男朋友/何时计划生育</label></li>
+    <li class="option-item"><input type="checkbox" name="q14" id="q14d" value="D"><label for="q14d">D. 因性别被质疑专业能力或领导力</label></li>
+    <li class="option-item"><input type="checkbox" name="q14" id="q14e" value="E"><label for="q14e">E. 同等条件下，男生被优先录用</label></li>
+    <li class="option-item"><input type="checkbox" name="q14" id="q14f" value="F"><label for="q14f">F. 因女性身份被排除在项目/重要工作之外</label></li>
+    <li class="option-item"><input type="checkbox" name="q14" id="q14g" value="G"><label for="q14g">G. 在实习/工作中，因生理期/孕产相关原因受到差别对待</label></li>
+    <li class="option-item"><input type="checkbox" name="q14" id="q14h" value="H"><label for="q14h">H. 薪酬或晋升机会明显低于同岗位男性</label></li>
+    <li class="option-item"><input type="checkbox" name="q14" id="q14i" value="I"><label for="q14i">I. 其他：</label><input type="text" class="text-input short" id="q14i_text" placeholder="请注明" style="display:inline-block;margin-left:4px;width:200px;"></li>
+  </ul>
+</div>
+
+<!-- Q15 -->
+<div class="q-card" id="q15-card">
+  <div class="q-num required">Q15 <span class="verify-tag c">验证锚点C对照</span></div>
+  <div class="q-title">您在求职中被问及过以下哪些问题？<strong>（多选）</strong></div>
+  <ul class="option-list">
+    <li class="option-item"><input type="checkbox" name="q15" id="q15a" value="A"><label for="q15a">A. 都未问过</label></li>
+    <li class="option-item"><input type="checkbox" name="q15" id="q15b" value="B"><label for="q15b">B. 是否有男朋友 / 是否已婚</label></li>
+    <li class="option-item"><input type="checkbox" name="q15" id="q15c" value="C"><label for="q15c">C. 打算什么时候结婚</label></li>
+    <li class="option-item"><input type="checkbox" name="q15" id="q15d" value="D"><label for="q15d">D. 打算什么时候要孩子 / 是否已有孩子</label></li>
+    <li class="option-item"><input type="checkbox" name="q15" id="q15e" value="E"><label for="q15e">E. 如何平衡家庭与工作</label></li>
+    <li class="option-item"><input type="checkbox" name="q15" id="q15f" value="F"><label for="q15f">F. 是否能接受加班/出差（暗示因性别可能不便）</label></li>
+    <li class="option-item"><input type="checkbox" name="q15" id="q15g" value="G"><label for="q15g">G. 父母/伴侣是否支持你的职业选择</label></li>
+  </ul>
+</div>
+
+<!-- Q16 -->
+<div class="q-card" id="q16-card">
+  <div class="q-num required">Q16</div>
+  <div class="q-title">您认为女大学生就业面临的最主要障碍是什么？<strong>（限选3项）</strong></div>
+  <ul class="option-list">
+    <li class="option-item"><input type="checkbox" name="q16" id="q16a" value="A" data-limit="3"><label for="q16a">A. 婚育歧视（用人单位担心婚育成本）</label></li>
+    <li class="option-item"><input type="checkbox" name="q16" id="q16b" value="B" data-limit="3"><label for="q16b">B. 专业不对口或专业选择受限</label></li>
+    <li class="option-item"><input type="checkbox" name="q16" id="q16c" value="C" data-limit="3"><label for="q16c">C. 行业性别隔离（想去的行业男性主导）</label></li>
+    <li class="option-item"><input type="checkbox" name="q16" id="q16d" value="D" data-limit="3"><label for="q16d">D. 薪酬期望与市场实际差距过大</label></li>
+    <li class="option-item"><input type="checkbox" name="q16" id="q16e" value="E" data-limit="3"><label for="q16e">E. 缺乏实习经验和职业技能</label></li>
+    <li class="option-item"><input type="checkbox" name="q16" id="q16f" value="F" data-limit="3"><label for="q16f">F. 家庭/伴侣对职业选择不支持</label></li>
+    <li class="option-item"><input type="checkbox" name="q16" id="q16g" value="G" data-limit="3"><label for="q16g">G. 自身能力不够自信</label></li>
+    <li class="option-item"><input type="checkbox" name="q16" id="q16h" value="H" data-limit="3"><label for="q16h">H. 经济下行，整体就业岗位减少</label></li>
+    <li class="option-item"><input type="checkbox" name="q16" id="q16i" value="I" data-limit="3"><label for="q16i">I. AI/技术变革使传统岗位减少</label></li>
+    <li class="option-item"><input type="checkbox" name="q16" id="q16j" value="J" data-limit="3"><label for="q16j">J. 社会对女性的刻板期待（"稳定就好"）</label></li>
+    <li class="option-item"><input type="checkbox" name="q16" id="q16k" value="K" data-limit="3"><label for="q16k">K. 其他：</label><input type="text" class="text-input short" id="q16k_text" placeholder="请注明" style="display:inline-block;margin-left:4px;width:150px;"></li>
+  </ul>
+</div>
+
+<!-- ===== PART 5: FLEXIBLE EMPLOYMENT ===== -->
+<div class="section-label">第五部分 · 灵活就业与新业态认知</div>
+
+<!-- Q17 -->
+<div class="q-card" id="q17-card">
+  <div class="q-num required">Q17</div>
+  <div class="q-title">如果暂时找不到理想工作，您能接受以下哪些过渡性就业方式？<strong>（多选）</strong></div>
+  <ul class="option-list">
+    <li class="option-item"><input type="checkbox" name="q17" id="q17a" value="A"><label for="q17a">A. 外卖/快递配送</label></li>
+    <li class="option-item"><input type="checkbox" name="q17" id="q17b" value="B"><label for="q17b">B. 网约车/代驾</label></li>
+    <li class="option-item"><input type="checkbox" name="q17" id="q17c" value="C"><label for="q17c">C. 直播/团播主播</label></li>
+    <li class="option-item"><input type="checkbox" name="q17" id="q17d" value="D"><label for="q17d">D. 自媒体/短视频创作</label></li>
+    <li class="option-item"><input type="checkbox" name="q17" id="q17e" value="E"><label for="q17e">E. 自由撰稿/设计/翻译等线上接单</label></li>
+    <li class="option-item"><input type="checkbox" name="q17" id="q17f" value="F"><label for="q17f">F. 兼职家教/培训机构</label></li>
+    <li class="option-item"><input type="checkbox" name="q17" id="q17g" value="G"><label for="q17g">G. 零售/餐饮/服务业临时工</label></li>
+    <li class="option-item"><input type="checkbox" name="q17" id="q17h" value="H"><label for="q17h">H. 都不会考虑，宁缺毋滥</label></li>
+    <li class="option-item"><input type="checkbox" name="q17" id="q17i" value="I"><label for="q17i">I. 其他：</label><input type="text" class="text-input short" id="q17i_text" placeholder="请注明" style="display:inline-block;margin-left:4px;width:150px;"></li>
+  </ul>
+</div>
+
+<!-- Q18 -->
+<div class="q-card" id="q18-card">
+  <div class="q-num required">Q18</div>
+  <div class="q-title">您对<strong>"团播"（团体直播）</strong>这类新兴灵活就业形式的了解程度是？</div>
+  <ul class="option-list">
+    <li class="option-item"><input type="radio" name="q18" id="q18a" value="A"><label for="q18a">A. 非常了解，我或身边人正在从事</label></li>
+    <li class="option-item"><input type="radio" name="q18" id="q18b" value="B"><label for="q18b">B. 有一定了解，看过相关报道或内容</label></li>
+    <li class="option-item"><input type="radio" name="q18" id="q18c" value="C"><label for="q18c">C. 听说过，但不太清楚具体做什么</label></li>
+    <li class="option-item"><input type="radio" name="q18" id="q18d" value="D"><label for="q18d">D. 完全不了解</label></li>
+    <li class="option-item"><input type="radio" name="q18" id="q18e" value="E"><label for="q18e">E. 了解，并且不考虑从事（请简述原因：</label><input type="text" class="text-input short" id="q18e_text" placeholder="请简述" style="display:inline-block;margin-left:4px;width:200px;">）</li>
+  </ul>
+</div>
+
+<!-- Q19 -->
+<div class="q-card" id="q19-card">
+  <div class="q-num required">Q19 <span class="verify-tag b">验证锚点B对照</span></div>
+  <div class="q-title">您可接受的毕业后第一份工作<strong>最低税前月薪</strong>是多少？</div>
+  <div class="q-hint">提示：此处应 ≤ Q11的期望薪资，否则前后矛盾</div>
+  <ul class="option-list">
+    <li class="option-item"><input type="radio" name="q19" id="q19a" value="A"><label for="q19a">A. 3,000元以下都可以接受</label></li>
+    <li class="option-item"><input type="radio" name="q19" id="q19b" value="B"><label for="q19b">B. 3,000 - 4,999元</label></li>
+    <li class="option-item"><input type="radio" name="q19" id="q19c" value="C"><label for="q19c">C. 5,000 - 6,999元</label></li>
+    <li class="option-item"><input type="radio" name="q19" id="q19d" value="D"><label for="q19d">D. 7,000 - 9,999元</label></li>
+    <li class="option-item"><input type="radio" name="q19" id="q19e" value="E"><label for="q19e">E. 10,000元及以上</label></li>
+    <li class="option-item"><input type="radio" name="q19" id="q19f" value="F"><label for="q19f">F. 没有最低要求，有工作就行</label></li>
+  </ul>
+</div>
+
+<!-- ===== PART 6: ENTREPRENEURSHIP ===== -->
+<div class="section-label">第六部分 · 创业意愿与障碍</div>
+
+<!-- Q20 -->
+<div class="q-card" id="q20-card">
+  <div class="q-num required">Q20</div>
+  <div class="q-title">您是否考虑过自主创业？</div>
+  <ul class="option-list">
+    <li class="option-item"><input type="radio" name="q20" id="q20a" value="A"><label for="q20a">A. 已经在创业</label></li>
+    <li class="option-item"><input type="radio" name="q20" id="q20b" value="B"><label for="q20b">B. 认真考虑过，有具体计划</label></li>
+    <li class="option-item"><input type="radio" name="q20" id="q20c" value="C"><label for="q20c">C. 有想法，但还没有具体计划</label></li>
+    <li class="option-item"><input type="radio" name="q20" id="q20d" value="D"><label for="q20d">D. 偶尔想过，但不会真的去做</label></li>
+    <li class="option-item"><input type="radio" name="q20" id="q20e" value="E"><label for="q20e">E. 从未考虑过创业</label></li>
+  </ul>
+</div>
+
+<!-- Q21 -->
+<div class="q-card" id="q21-card">
+  <div class="q-num required">Q21</div>
+  <div class="q-title">如果您不打算创业或犹豫不决，最大的障碍是什么？</div>
+  <div class="q-hint">即使您有创业意愿，也可以选择认为最大的障碍</div>
+  <ul class="option-list">
+    <li class="option-item"><input type="radio" name="q21" id="q21a" value="A"><label for="q21a">A. 对创业没有兴趣</label></li>
+    <li class="option-item"><input type="radio" name="q21" id="q21b" value="B"><label for="q21b">B. 缺乏启动资金</label></li>
+    <li class="option-item"><input type="radio" name="q21" id="q21c" value="C"><label for="q21c">C. 缺乏创业知识和经验</label></li>
+    <li class="option-item"><input type="radio" name="q21" id="q21d" value="D"><label for="q21d">D. 缺乏好的创业项目/方向</label></li>
+    <li class="option-item"><input type="radio" name="q21" id="q21e" value="E"><label for="q21e">E. 担心风险和失败</label></li>
+    <li class="option-item"><input type="radio" name="q21" id="q21f" value="F"><label for="q21f">F. 家人/伴侣不支持</label></li>
+    <li class="option-item"><input type="radio" name="q21" id="q21g" value="G"><label for="q21g">G. 觉得自己性格不适合创业</label></li>
+    <li class="option-item"><input type="radio" name="q21" id="q21h" value="H"><label for="q21h">H. 社会对女性创业者的偏见</label></li>
+    <li class="option-item"><input type="radio" name="q21" id="q21i" value="I"><label for="q21i">I. 政策支持不够/不知如何获取</label></li>
+    <li class="option-item"><input type="radio" name="q21" id="q21j" value="J"><label for="q21j">J. 其他：</label><input type="text" class="text-input short" id="q21j_text" placeholder="请注明" style="display:inline-block;margin-left:4px;width:150px;"></li>
+  </ul>
+</div>
+
+<!-- Q22 -->
+<div class="q-card" id="q22-card">
+  <div class="q-num required">Q22</div>
+  <div class="q-title">您认为以下哪类支持对女大学生创业最为关键？<strong>（限选3项）</strong></div>
+  <ul class="option-list">
+    <li class="option-item"><input type="checkbox" name="q22" id="q22a" value="A" data-limit="3"><label for="q22a">A. 创业资金/低息贷款</label></li>
+    <li class="option-item"><input type="checkbox" name="q22" id="q22b" value="B" data-limit="3"><label for="q22b">B. 创业课程与技能培训</label></li>
+    <li class="option-item"><input type="checkbox" name="q22" id="q22c" value="C" data-limit="3"><label for="q22c">C. 创业导师一对一指导</label></li>
+    <li class="option-item"><input type="checkbox" name="q22" id="q22d" value="D" data-limit="3"><label for="q22d">D. 创业孵化基地/免费办公场地</label></li>
+    <li class="option-item"><input type="checkbox" name="q22" id="q22e" value="E" data-limit="3"><label for="q22e">E. 创业竞赛与项目展示平台</label></li>
+    <li class="option-item"><input type="checkbox" name="q22" id="q22f" value="F" data-limit="3"><label for="q22f">F. 家庭/伴侣的情感与经济支持</label></li>
+    <li class="option-item"><input type="checkbox" name="q22" id="q22g" value="G" data-limit="3"><label for="q22g">G. 女性创业者社群/交流网络</label></li>
+    <li class="option-item"><input type="checkbox" name="q22" id="q22h" value="H" data-limit="3"><label for="q22h">H. 政府补贴与税收优惠</label></li>
+    <li class="option-item"><input type="checkbox" name="q22" id="q22i" value="I" data-limit="3"><label for="q22i">I. AI工具培训（如AI选品、AI设计、AI多语种等）</label></li>
+    <li class="option-item"><input type="checkbox" name="q22" id="q22j" value="J" data-limit="3"><label for="q22j">J. 其他：</label><input type="text" class="text-input short" id="q22j_text" placeholder="请注明" style="display:inline-block;margin-left:4px;width:150px;"></li>
+  </ul>
+</div>
+
+<!-- ===== PART 7: DIGITAL & POLICY ===== -->
+<div class="section-label">第七部分 · 数字素养与政策感知</div>
+
+<!-- Q23 -->
+<div class="q-card" id="q23-card">
+  <div class="q-num required">Q23</div>
+  <div class="q-title">您对以下AI工具的熟悉和使用情况如何？<strong>（每行必选）</strong></div>
+  <div class="table-wrap" style="overflow-x:auto;">
+  <table class="matrix-table">
+    <thead>
+      <tr><th></th><th>从未用过</th><th>听说过<br>但没用过</th><th>偶尔使用</th><th>经常使用</th><th>熟练使用</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ChatGPT / Claude / 文心一言等通用AI</td>
+        <td><input type="radio" name="q23_1" value="1" required></td>
+        <td><input type="radio" name="q23_1" value="2"></td>
+        <td><input type="radio" name="q23_1" value="3"></td>
+        <td><input type="radio" name="q23_1" value="4"></td>
+        <td><input type="radio" name="q23_1" value="5"></td>
+      </tr>
+      <tr>
+        <td>AI绘图（Midjourney / Stable Diffusion等）</td>
+        <td><input type="radio" name="q23_2" value="1" required></td>
+        <td><input type="radio" name="q23_2" value="2"></td>
+        <td><input type="radio" name="q23_2" value="3"></td>
+        <td><input type="radio" name="q23_2" value="4"></td>
+        <td><input type="radio" name="q23_2" value="5"></td>
+      </tr>
+      <tr>
+        <td>AI视频生成（数字人/多语种等）</td>
+        <td><input type="radio" name="q23_3" value="1" required></td>
+        <td><input type="radio" name="q23_3" value="2"></td>
+        <td><input type="radio" name="q23_3" value="3"></td>
+        <td><input type="radio" name="q23_3" value="4"></td>
+        <td><input type="radio" name="q23_3" value="5"></td>
+      </tr>
+      <tr>
+        <td>AI办公工具（AI制作PPT/Excel等）</td>
+        <td><input type="radio" name="q23_4" value="1" required></td>
+        <td><input type="radio" name="q23_4" value="2"></td>
+        <td><input type="radio" name="q23_4" value="3"></td>
+        <td><input type="radio" name="q23_4" value="4"></td>
+        <td><input type="radio" name="q23_4" value="5"></td>
+      </tr>
+      <tr>
+        <td>AI编程辅助（Copilot / Cursor等）</td>
+        <td><input type="radio" name="q23_5" value="1" required></td>
+        <td><input type="radio" name="q23_5" value="2"></td>
+        <td><input type="radio" name="q23_5" value="3"></td>
+        <td><input type="radio" name="q23_5" value="4"></td>
+        <td><input type="radio" name="q23_5" value="5"></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- Q24 -->
+<div class="q-card" id="q24-card">
+  <div class="q-num required">Q24</div>
+  <div class="q-title">您是否了解以下针对女大学生就业创业的扶持政策或行动？<strong>（多选）</strong></div>
+  <ul class="option-list">
+    <li class="option-item"><input type="checkbox" name="q24" id="q24a" value="A"><label for="q24a">A. 以上都不了解</label></li>
+    <li class="option-item"><input type="checkbox" name="q24" id="q24b" value="B"><label for="q24b">B. "国聘行动"促进女大学生就业专场</label></li>
+    <li class="option-item"><input type="checkbox" name="q24" id="q24c" value="C"><label for="q24c">C. 全国妇联"巾帼就业创业促进行动" / "巾帼护航计划"</label></li>
+    <li class="option-item"><input type="checkbox" name="q24" id="q24d" value="D"><label for="q24d">D. "巾帼贷"系列女性创业贷款</label></li>
+    <li class="option-item"><input type="checkbox" name="q24" id="q24e" value="E"><label for="q24e">E. 大学生创业孵化基地免费入驻政策</label></li>
+    <li class="option-item"><input type="checkbox" name="q24" id="q24f" value="F"><label for="q24f">F. 各地妇联举办的女性专场招聘会</label></li>
+    <li class="option-item"><input type="checkbox" name="q24" id="q24g" value="G"><label for="q24g">G. 高校"微专业"和职业能力培训课程（"双千"计划）</label></li>
+    <li class="option-item"><input type="checkbox" name="q24" id="q24h" value="H"><label for="q24h">H. 教育部"三严禁"（禁性别/户籍/学历歧视性招聘条款）</label></li>
+    <li class="option-item"><input type="checkbox" name="q24" id="q24i" value="I"><label for="q24i">I. 大学生创业担保贷款及贴息</label></li>
+    <li class="option-item"><input type="checkbox" name="q24" id="q24j" value="J"><label for="q24j">J. 其他：</label><input type="text" class="text-input short" id="q24j_text" placeholder="请注明" style="display:inline-block;margin-left:4px;width:150px;"></li>
+  </ul>
+</div>
+
+<!-- Q25 -->
+<div class="q-card" id="q25-card">
+  <div class="q-num">Q25 · 选填</div>
+  <div class="q-title">关于女大学生创业就业，您最想说的话或建议是？</div>
+  <textarea class="q-textarea" name="q25" id="q25" placeholder="畅所欲言……（可不填）"></textarea>
+</div>
+
+<!-- ===== SUBMIT ===== -->
+<div class="btn-row">
+  <button type="button" class="btn btn-secondary" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ 回到顶部</button>
+  <button type="submit" class="btn btn-primary">✓ 提交问卷</button>
+</div>
+
+</form>
+</div>
+
+<script>
+// ===== START TIME =====
+const startTime = Date.now();
+
+// ===== GENDER SCREEN =====
+document.querySelectorAll('input[name="q1"]').forEach(r => {
+  r.addEventListener('change', function() {
+    if (this.value === 'B') {
+      document.getElementById('genderScreen').classList.add('show');
+      // Disable rest of form visually
+      document.querySelectorAll('.q-card').forEach(c => c.style.opacity = '0.4');
+      document.getElementById('q1-card').style.opacity = '1';
+      document.querySelector('.btn-row').style.opacity = '0.4';
+    } else {
+      document.getElementById('genderScreen').classList.remove('show');
+      document.querySelectorAll('.q-card').forEach(c => c.style.opacity = '1');
+      document.querySelector('.btn-row').style.opacity = '1';
+    }
+  });
+});
+
+// ===== PROGRESS TRACKING =====
+const totalRequired = 24; // Q1-Q24 required, Q25 optional
+function updateProgress() {
+  let answered = 0;
+  // Count radio questions Q1-Q12, Q18-Q21
+  const radioNames = ['q1','q2','q3','q4','q5','q6','q7','q8','q9','q10','q11','q12','q18','q19','q20','q21'];
+  radioNames.forEach(name => {
+    if (document.querySelector(`input[name="${name}"]:checked`)) answered++;
+  });
+  // Q13 (sort)
+  if (document.getElementById('q13').value.trim()) answered++;
+  // Q14, Q15, Q16, Q17, Q22, Q24 checkboxes
+  ['q14','q15','q16','q17','q22','q24'].forEach(name => {
+    if (document.querySelector(`input[name="${name}"]:checked`)) answered++;
+  });
+  // Q23 matrix (5 rows, each needs a selection)
+  for (let i = 1; i <= 5; i++) {
+    if (document.querySelector(`input[name="q23_${i}"]:checked`)) answered++;
+  }
+  const pct = Math.round((answered / totalRequired) * 100);
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressText').textContent = answered + '/' + totalRequired;
+}
+document.querySelectorAll('input, textarea').forEach(el => {
+  el.addEventListener('change', updateProgress);
+  el.addEventListener('input', updateProgress);
+});
+
+// ===== LIMIT CHECKBOX SELECTION =====
+document.querySelectorAll('input[data-limit]').forEach(cb => {
+  cb.addEventListener('change', function() {
+    const limit = parseInt(this.dataset.limit);
+    const group = document.querySelectorAll(`input[name="${this.name}"]`);
+    const checked = document.querySelectorAll(`input[name="${this.name}"]:checked`);
+    if (checked.length > limit) {
+      this.checked = false;
+      alert('本题限选 ' + limit + ' 项，您已选满。');
+    }
+  });
+});
+
+// ===== VALIDATION =====
+function getRadioVal(name) {
+  const el = document.querySelector(`input[name="${name}"]:checked`);
+  return el ? el.value : null;
+}
+function getCheckboxVals(name) {
+  return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(e => e.value);
+}
+function salaryRank(val) {
+  const map = {A:1, B:2, C:3, D:4, E:5, F:6, G:7};
+  return map[val] || 0;
+}
+function salaryRankQ19(val) {
+  // A=1, B=2, C=3, D=4, E=5, F=0 (no min - treated as pass)
+  const map = {A:1, B:2, C:3, D:4, E:5, F:0};
+  return map[val] !== undefined ? map[val] : 0;
+}
+
+document.getElementById('surveyForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const errors = [];
+
+  // Check Q1 gender
+  const q1 = getRadioVal('q1');
+  if (q1 === 'B') {
+    errors.push('Q1：本次调研仅面向女性群体，男性无法提交。');
+  }
+  if (!q1) errors.push('Q1：请选择性别。');
+
+  // Required radio Q2-Q12
+  for (let i = 2; i <= 12; i++) {
+    if (!getRadioVal('q' + i)) errors.push('Q' + i + '：此题必填。');
+  }
+
+  // Q13 sort
+  const q13 = document.getElementById('q13').value.trim();
+  if (!q13) errors.push('Q13：请填写排序。');
+
+  // Q14-Q17 checkboxes
+  ['q14','q15','q16','q17'].forEach(name => {
+    if (getCheckboxVals(name).length === 0) errors.push(name.toUpperCase() + '：此题必填（多选）。');
+  });
+
+  // Q18-Q21 radio
+  for (let i = 18; i <= 21; i++) {
+    if (!getRadioVal('q' + i)) errors.push('Q' + i + '：此题必填。');
+  }
+
+  // Q22, Q24 checkboxes
+  ['q22','q24'].forEach(name => {
+    if (getCheckboxVals(name).length === 0) errors.push(name.toUpperCase() + '：此题必填（多选）。');
+  });
+
+  // Q23 matrix
+  for (let i = 1; i <= 5; i++) {
+    if (!getRadioVal('q23_' + i)) errors.push('Q23 第' + i + '行：每行必选。');
+  }
+
+  // ===== VERIFICATION CHECKS =====
+  const q6 = getRadioVal('q6');
+  const q9 = getRadioVal('q9');
+  // Verify A: Q6="直接就业" AND Q9="正在备考研究生" → contradiction
+  if (q6 === 'A' && q9 === 'A') {
+    errors.push('⚠️ 验证不通过：Q6选择"直接就业"与Q9"正在备考研究生"存在矛盾。请检查您的选择是否一致。');
+  }
+
+  // Verify B: Q19 minimum > Q11 expectation
+  const q11 = getRadioVal('q11');
+  const q19 = getRadioVal('q19');
+  const q11Rank = salaryRank(q11);
+  const q19Rank = salaryRankQ19(q19);
+  if (q19Rank > 0 && q11Rank > 0 && q19Rank > q11Rank) {
+    errors.push('⚠️ 验证不通过：Q19可接受的最低薪资高于Q11的期望薪资，前后不一致。请调整。');
+  }
+
+  // Verify C: Q14 contains "A" (never experienced) AND Q15 contains B/C/D (asked about marriage/children)
+  const q14Vals = getCheckboxVals('q14');
+  const q15Vals = getCheckboxVals('q15');
+  if (q14Vals.includes('A') && (q15Vals.includes('B') || q15Vals.includes('C') || q15Vals.includes('D'))) {
+    errors.push('⚠️ 验证不通过：Q14选择"从未遭遇性别不公"但Q15中又被问及婚育问题，前后矛盾。请修正。');
+  }
+
+  // Q15 mutual exclusion: if "A" selected, B-G should not be selected
+  if (q15Vals.includes('A') && q15Vals.length > 1) {
+    errors.push('⚠️ Q15：选择了"都未问过"就不能同时选择其他选项，请修正。');
+  }
+
+  // Q24 mutual exclusion: if "A" selected, B-J should not be selected
+  const q24Vals = getCheckboxVals('q24');
+  if (q24Vals.includes('A') && q24Vals.length > 1) {
+    errors.push('⚠️ Q24：选择了"以上都不了解"就不能同时选择其他选项，请修正。');
+  }
+
+  // Q17 mutual exclusion
+  const q17Vals = getCheckboxVals('q17');
+  if (q17Vals.includes('H') && q17Vals.length > 1) {
+    errors.push('⚠️ Q17：选择了"都不会考虑"就不能同时选择其他选项，请修正。');
+  }
+
+  // Time check
+  const elapsed = (Date.now() - startTime) / 1000;
+  if (elapsed < 90) {
+    errors.push('⚠️ 作答时间过短（不足90秒），请认真阅读每道题目后再提交。');
+  }
+
+  // ===== SHOW RESULT =====
+  const modal = document.getElementById('resultModal');
+  const content = document.getElementById('resultContent');
+
+  if (errors.length > 0) {
+    content.innerHTML = `
+      <div class="icon">⚠️</div>
+      <h3>提交未通过</h3>
+      <p>以下问题需要修正（${errors.length}项）：</p>
+      <ul class="err-list">${errors.map(e => '<li>' + e + '</li>').join('')}</ul>
+      <button class="btn btn-primary" onclick="document.getElementById('resultModal').classList.remove('show')">返回修改</button>
+    `;
+    // Scroll to first error
+    const firstErrQ = errors[0].match(/Q(\d+)/);
+    if (firstErrQ) {
+      const card = document.getElementById('q' + firstErrQ[1] + '-card');
+      if (card) { card.scrollIntoView({behavior:'smooth',block:'center'}); card.classList.add('error'); setTimeout(() => card.classList.remove('error'), 3000); }
+    }
+  } else {
+    content.innerHTML = `
+      <div class="icon">✅</div>
+      <h3>提交成功！</h3>
+      <p>感谢您的认真填写！<br>您的回答将为广州市妇联推动女大学生创业就业工作提供重要数据支撑。</p>
+      <p style="margin-top:8px;font-size:0.85em;color:var(--muted);">您可以关闭本页面了。</p>
+    `;
+    // Disable form
+    document.querySelectorAll('input, textarea, button[type="submit"]').forEach(el => el.disabled = true);
+    document.querySelector('.btn-row').style.opacity = '0.5';
+    document.querySelector('.btn-row').querySelector('button[type="submit"]').textContent = '已提交 ✓';
+  }
+  modal.classList.add('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+// ===== INITIAL PROGRESS =====
+updateProgress();
+</script>
+</body>
+</html>
