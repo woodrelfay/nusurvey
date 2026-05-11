@@ -14,7 +14,7 @@
   --font:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",-apple-system,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font);background:linear-gradient(180deg,#fdf8fa 0%,#faf8f6 100%);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font);background:linear-gradient(180deg,#fdf8fa 0%,#faf8f6 100%);color:var(--text);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}
 
 .hero{background:linear-gradient(160deg,#1a0f16 0%,#2d1525 40%,#4a2348 100%);color:#fff;text-align:center;padding:40px 0 32px;position:relative;overflow:hidden}
 .hero::after{content:'';position:absolute;bottom:-80px;right:-100px;width:280px;height:280px;background:radial-gradient(circle,rgba(232,115,155,0.2) 0%,transparent 70%);border-radius:50%}
@@ -40,16 +40,16 @@ body{font-family:var(--font);background:linear-gradient(180deg,#fdf8fa 0%,#faf8f
 .progress-bar-inner{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:6px;transition:width 0.4s}
 .progress-text{font-size:0.85em;font-weight:600;color:var(--accent);white-space:nowrap}
 
-.q-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 24px;margin:12px 0;border:1px solid var(--border);transition:border-color 0.3s}
-.q-card:hover{border-color:#e5d0d8}
-.q-card .q-num{display:inline-block;padding:3px 12px;border-radius:14px;font-size:0.75em;font-weight:700;background:#fef5f7;color:var(--accent);margin-bottom:8px}
-.q-card .q-text{font-weight:600;font-size:0.98em;margin-bottom:14px;line-height:1.5}
+.q-card{background:var(--card);border-radius:14px;box-shadow:0 1px 3px rgba(0,0,0,0.03),0 6px 20px rgba(0,0,0,0.05);padding:24px 28px;margin:16px 0;border:1.5px solid #e8e3e0;transition:border-color 0.3s,box-shadow 0.3s}
+.q-card:hover{border-color:#d5c8c0;box-shadow:0 2px 4px rgba(0,0,0,0.04),0 8px 28px rgba(0,0,0,0.07)}
+.q-card .q-num{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:24px;padding:0 10px;border-radius:12px;font-size:0.78em;font-weight:700;background:linear-gradient(135deg,#fef5f7,#fdf0f3);color:var(--accent);margin-bottom:10px;letter-spacing:0.5px}
+.q-card .q-text{font-weight:600;font-size:1.05em;margin-bottom:16px;line-height:1.6}
 
-.likert{display:flex;justify-content:space-between;align-items:stretch;gap:4px}
-.likert label{flex:1;text-align:center;cursor:pointer;padding:10px 4px;border-radius:8px;transition:all 0.2s;font-size:0.8em;color:var(--text2);border:1px solid transparent;user-select:none;display:flex;align-items:center;justify-content:center}
-.likert label:hover{background:#fdf7f9;border-color:#f0d0db}
+.likert{display:flex;justify-content:space-between;align-items:stretch;gap:8px}
+.likert label{flex:1;text-align:center;cursor:pointer;padding:12px 6px;border-radius:10px;transition:all 0.2s;font-size:0.88em;color:var(--text2);border:1.5px solid #e8e3e0;background:#fdfdfc;user-select:none;display:flex;align-items:center;justify-content:center;line-height:1.4}
+.likert label:hover{background:#fdf7f9;border-color:#e0c0cc;transform:translateY(-1px);box-shadow:0 2px 8px rgba(0,0,0,0.06)}
 .likert input{display:none}
-.likert input:checked+label{background:var(--accent);color:#fff;font-weight:700;border-color:var(--accent);box-shadow:0 2px 10px rgba(183,71,110,0.25);transform:scale(1.03)}
+.likert input:checked+label{background:linear-gradient(135deg,var(--accent),#9e3c5d);color:#fff;font-weight:700;border-color:var(--accent);box-shadow:0 3px 14px rgba(183,71,110,0.3);transform:scale(1.04)}
 
 .btn-row{display:flex;gap:12px;justify-content:center;margin:30px 0}
 .btn{padding:13px 44px;border-radius:10px;font-size:1em;font-weight:700;cursor:pointer;border:none;transition:all 0.2s;font-family:var(--font);letter-spacing:1px}
@@ -99,7 +99,10 @@ body{font-family:var(--font);background:linear-gradient(180deg,#fdf8fa 0%,#faf8f
 
 @media(max-width:500px){
   .hero h1{font-size:1.4em}
-  .likert label{font-size:0.7em;padding:8px 2px}
+  .q-card{padding:16px 14px}
+  .q-card .q-text{font-size:0.95em}
+  .likert{gap:5px}
+  .likert label{font-size:0.72em;padding:10px 2px;border-radius:8px}
   .result-card{padding:24px 14px}
   .result-card .type-code{font-size:2em;letter-spacing:3px}
   .info-grid{grid-template-columns:1fr}
