@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>「她势·职向力」职业人格测试</title>
+<style>
+:root {
+  --bg:#faf8f6; --card:#fff; --text:#1a1a2e; --text2:#555; --muted:#999;
+  --border:#e5e0db; --accent:#b7476e; --accent2:#e8739b;
+  --purple:#5b3a6e; --green:#3d7a5c; --gold:#b87a20; --blue:#2d6a8b;
+  --radius:10px;
+  --shadow:0 2px 4px rgba(0,0,0,0.04),0 8px 24px rgba(0,0,0,0.05);
+  --font:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",-apple-system,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:linear-gradient(180deg,#fdf8fa 0%,#faf8f6 100%);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+
+/* Hero */
+.hero{background:linear-gradient(160deg,#1a0f16 0%,#2d1525 40%,#4a2348 100%);color:#fff;text-align:center;padding:44px 0 36px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;bottom:-60px;right:-80px;width:240px;height:240px;background:radial-gradient(circle,rgba(183,71,110,0.25) 0%,transparent 70%);border-radius:50%}
+.hero-inner{max-width:680px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+.hero .tag{display:inline-block;font-size:0.72em;letter-spacing:3px;padding:4px 14px;border:1px solid rgba(255,255,255,0.3);border-radius:20px;margin-bottom:12px;text-transform:uppercase}
+.hero h1{font-size:1.9em;font-weight:800;letter-spacing:2px;margin-bottom:4px}
+.hero h1 em{font-style:normal;color:var(--accent2)}
+.hero .sub{font-size:0.88em;opacity:0.7;margin-top:4px}
+
+/* Container */
+.container{max-width:640px;margin:0 auto;padding:24px 20px 60px}
+
+/* Intro card */
+.intro-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px 24px;margin-bottom:24px;border:1px solid var(--border);text-align:center}
+.intro-card h2{font-size:1.15em;color:var(--purple);margin-bottom:8px}
+.intro-card p{color:var(--text2);font-size:0.9em;line-height:1.8}
+.intro-card .dims{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px}
+.intro-card .dim-tag{padding:6px 14px;border-radius:16px;font-size:0.8em;font-weight:600}
+.dim-tag.d1{background:#e4eef8;color:var(--blue)}
+.dim-tag.d2{background:#fef3e0;color:var(--gold)}
+.dim-tag.d3{background:#fde8ec;color:#c44a5e}
+.dim-tag.d4{background:#e8f4f0;color:var(--green)}
+
+/* Progress */
+.progress-wrap{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:12px 20px}
+.progress-inner{max-width:640px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.progress-bar-outer{flex:1;height:6px;background:#eee;border-radius:6px;overflow:hidden}
+.progress-bar-inner{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:6px;transition:width 0.4s}
+.progress-text{font-size:0.85em;font-weight:600;color:var(--accent);white-space:nowrap}
+
+/* Question card */
+.q-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 24px;margin:14px 0;border:1px solid var(--border)}
+.q-card .q-num{display:inline-block;padding:2px 10px;border-radius:12px;font-size:0.76em;font-weight:700;background:#fef5f7;color:var(--accent);margin-bottom:10px}
+.q-card .q-text{font-weight:600;font-size:1em;margin-bottom:14px;line-height:1.5}
+
+/* Likert scale */
+.likert{display:flex;justify-content:space-between;align-items:center;gap:2px}
+.likert label{flex:1;text-align:center;cursor:pointer;padding:8px 2px;border-radius:8px;transition:all 0.2s;font-size:0.82em;color:var(--text2);border:1px solid transparent;user-select:none}
+.likert label:hover{background:#fdf7f9;border-color:#f5d8e1}
+.likert input{display:none}
+.likert input:checked+label{background:var(--accent);color:#fff;font-weight:700;border-color:var(--accent);box-shadow:0 2px 8px rgba(183,71,110,0.25)}
+.likert-label-row{display:flex;justify-content:space-between;font-size:0.72em;color:var(--muted);margin-bottom:6px;padding:0 2px}
+
+/* Button */
+.btn-row{display:flex;gap:12px;justify-content:center;margin:28px 0}
+.btn{padding:12px 40px;border-radius:8px;font-size:1em;font-weight:600;cursor:pointer;border:none;transition:all 0.2s;font-family:var(--font)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:#9e3c5d;transform:translateY(-1px);box-shadow:0 4px 16px rgba(183,71,110,0.3)}
+.btn-secondary{background:#fff;color:var(--text2);border:1px solid var(--border)}
+.btn-secondary:hover{background:#f8f8f8}
+
+/* Result */
+.result-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);z-index:999;justify-content:center;align-items:flex-start;overflow-y:auto;padding:40px 0}
+.result-overlay.show{display:flex}
+.result-card{background:#fff;border-radius:var(--radius);padding:36px 28px;max-width:520px;width:92%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,0.25);position:relative;margin:auto}
+.result-card .type-badge{display:inline-block;font-size:0.75em;letter-spacing:2px;padding:5px 16px;border-radius:16px;font-weight:700;margin-bottom:8px}
+.result-card .type-code{font-size:2.4em;font-weight:800;letter-spacing:4px;margin:8px 0;background:linear-gradient(135deg,#b7476e,#5b3a6e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.result-card .type-name{font-size:1.4em;font-weight:700;margin-bottom:4px;color:var(--text)}
+.result-card .type-desc{color:var(--text2);font-size:0.9em;line-height:1.8;margin:16px 0}
+.result-card .type-section{text-align:left;margin:16px 0}
+.result-card .type-section h4{font-size:0.85em;color:var(--purple);margin-bottom:6px;border-bottom:1px solid #f0ece8;padding-bottom:4px}
+.result-card .type-section .tag-row{display:flex;flex-wrap:wrap;gap:6px}
+.result-card .type-section .tag-row span{padding:3px 10px;border-radius:12px;font-size:0.8em;background:#fef5f7;color:#b7476e}
+.result-card .dims-display{display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:left;margin:16px 0;font-size:0.82em}
+.result-card .dims-display .dim-item{padding:8px 12px;background:#fdf8fa;border-radius:6px}
+.result-card .dim-item strong{color:var(--purple)}
+
+/* Error modal */
+.err-toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#c44a5e;color:#fff;padding:12px 24px;border-radius:8px;font-size:0.9em;z-index:999;display:none;box-shadow:0 8px 24px rgba(196,74,94,0.3)}
+.err-toast.show{display:block;animation:fadeInOut 2.5s forwards}
+@keyframes fadeInOut{0%{opacity:0;top:0}15%{opacity:1;top:20px}75%{opacity:1;top:20px}100%{opacity:0;top:0}}
+
+/* Share btn */
+.share-row{display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.share-btn{padding:8px 18px;border-radius:20px;font-size:0.85em;font-weight:600;cursor:pointer;border:none;font-family:var(--font);transition:all 0.2s}
+.share-btn.copy{background:var(--purple);color:#fff}
+.share-btn.copy:hover{background:#4a2e5c}
+
+@media(max-width:500px){
+  .hero h1{font-size:1.3em}
+  .likert{flex-wrap:wrap}
+  .likert label{flex:0 0 18%;font-size:0.72em;padding:6px 1px}
+  .result-card{padding:24px 16px}
+  .result-card .type-code{font-size:1.8em}
+}
+</style>
+</head>
+<body>
+
+<div class="err-toast" id="errToast"></div>
+<div class="result-overlay" id="resultOverlay"><div class="result-card" id="resultCard"></div></div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="tag">SHE · CAREER COMPASS</div>
+    <h1>「她势·<em>职向力</em>」<br>职业人格测试</h1>
+    <p class="sub">4个维度 · 16种类型 · 发现属于你的职业DNA<br>基于当代女大学生创业就业趋势研究</p>
+  </div>
+</header>
+
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <span style="font-size:0.85em;color:var(--text2)">完成进度</span>
+    <div class="progress-bar-outer"><div class="progress-bar-inner" id="progressBar" style="width:0%"></div></div>
+    <span class="progress-text" id="progressText">0/16</span>
+  </div>
+</div>
+
+<div class="container">
+<div class="intro-card">
+  <h2>🔮 发现你的「她势」职业人格</h2>
+  <p>以下16道题没有对错，凭第一反应作答即可。<br>测试将从四个维度描摹你的职业DNA画像，耗时约4分钟。</p>
+  <div class="dims">
+    <span class="dim-tag d1">🏛 稳锚 vs 扬帆</span>
+    <span class="dim-tag d2">📋 蓝图 vs 即兴</span>
+    <span class="dim-tag d3">🛡 堡垒 vs 旷野</span>
+    <span class="dim-tag d4">🤝 共情 vs 解码</span>
+  </div>
+</div>
+
+<form id="testForm" autocomplete="off">
+
+<!-- Q1 稳锚/扬帆 -->
+<div class="q-card"><div class="q-num">01</div><div class="q-text">"编制和铁饭碗比高薪更让我安心。"</div>
+<div class="likert">
+  <input type="radio" name="q1" id="q1_1" value="1"><label for="q1_1">完全<br>不同意</label>
+  <input type="radio" name="q1" id="q1_2" value="2"><label for="q1_2">不太<br>同意</label>
+  <input type="radio" name="q1" id="q1_3" value="3"><label for="q1_3">中立</label>
+  <input type="radio" name="q1" id="q1_4" value="4"><label for="q1_4">比较<br>同意</label>
+  <input type="radio" name="q1" id="q1_5" value="5"><label for="q1_5">完全<br>同意</label>
+</div></div>
+
+<!-- Q2 蓝图/即兴 -->
+<div class="q-card"><div class="q-num">02</div><div class="q-text">"计划赶不上变化，走一步看一步也挺好。"</div>
+<div class="likert">
+  <input type="radio" name="q2" id="q2_1" value="5"><label for="q2_1">完全<br>不同意</label>
+  <input type="radio" name="q2" id="q2_2" value="4"><label for="q2_2">不太<br>同意</label>
+  <input type="radio" name="q2" id="q2_3" value="3"><label for="q2_3">中立</label>
+  <input type="radio" name="q2" id="q2_4" value="2"><label for="q2_4">比较<br>同意</label>
+  <input type="radio" name="q2" id="q2_5" value="1"><label for="q2_5">完全<br>同意</label>
+</div></div>
+
+<!-- Q3 堡垒/旷野 -->
+<div class="q-card"><div class="q-num">03</div><div class="q-text">"没有七成把握的事情，我不会去做。"</div>
+<div class="likert">
+  <input type="radio" name="q3" id="q3_1" value="1"><label for="q3_1">完全<br>不同意</label>
+  <input type="radio" name="q3" id="q3_2" value="2"><label for="q3_2">不太<br>同意</label>
+  <input type="radio" name="q3" id="q3_3" value="3"><label for="q3_3">中立</label>
+  <input type="radio" name="q3" id="q3_4" value="4"><label for="q3_4">比较<br>同意</label>
+  <input type="radio" name="q3" id="q3_5" value="5"><label for="q3_5">完全<br>同意</label>
+</div></div>
+
+<!-- Q4 共情/解码 -->
+<div class="q-card"><div class="q-num">04</div><div class="q-text">"和形形色色的人打交道，让工作更有意义。"</div>
+<div class="likert">
+  <input type="radio" name="q4" id="q4_1" value="1"><label for="q4_1">完全<br>不同意</label>
+  <input type="radio" name="q4" id="q4_2" value="2"><label for="q4_2">不太<br>同意</label>
+  <input type="radio" name="q4" id="q4_3" value="3"><label for="q4_3">中立</label>
+  <input type="radio" name="q4" id="q4_4" value="4"><label for="q4_4">比较<br>同意</label>
+  <input type="radio" name="q4" id="q4_5" value="5"><label for="q4_5">完全<br>同意</label>
+</div></div>
+
+<!-- Q5 稳锚/扬帆 (reverse) -->
+<div class="q-card"><div class="q-num">05</div><div class="q-text">"自由职业/灵活就业的生活方式非常吸引我。"</div>
+<div class="likert">
+  <input type="radio" name="q5" id="q5_1" value="5"><label for="q5_1">完全<br>不同意</label>
+  <input type="radio" name="q5" id="q5_2" value="4"><label for="q5_2">不太<br>同意</label>
+  <input type="radio" name="q5" id="q5_3" value="3"><label for="q5_3">中立</label>
+  <input type="radio" name="q5" id="q5_4" value="2"><label for="q5_4">比较<br>同意</label>
+  <input type="radio" name="q5" id="q5_5" value="1"><label for="q5_5">完全<br>同意</label>
+</div></div>
+
+<!-- Q6 蓝图/即兴 -->
+<div class="q-card"><div class="q-num">06</div><div class="q-text">"我从大一开始就在为毕业后的出路做准备。"</div>
+<div class="likert">
+  <input type="radio" name="q6" id="q6_1" value="1"><label for="q6_1">完全<br>不同意</label>
+  <input type="radio" name="q6" id="q6_2" value="2"><label for="q6_2">不太<br>同意</label>
+  <input type="radio" name="q6" id="q6_3" value="3"><label for="q6_3">中立</label>
+  <input type="radio" name="q6" id="q6_4" value="4"><label for="q6_4">比较<br>同意</label>
+  <input type="radio" name="q6" id="q6_5" value="5"><label for="q6_5">完全<br>同意</label>
+</div></div>
+
+<!-- Q7 堡垒/旷野 (reverse) -->
+<div class="q-card"><div class="q-num">07</div><div class="q-text">"即使月薪低于期望，只要成长空间大我就去。"</div>
+<div class="likert">
+  <input type="radio" name="q7" id="q7_1" value="5"><label for="q7_1">完全<br>不同意</label>
+  <input type="radio" name="q7" id="q7_2" value="4"><label for="q7_2">不太<br>同意</label>
+  <input type="radio" name="q7" id="q7_3" value="3"><label for="q7_3">中立</label>
+  <input type="radio" name="q7" id="q7_4" value="2"><label for="q7_4">比较<br>同意</label>
+  <input type="radio" name="q7" id="q7_5" value="1"><label for="q7_5">完全<br>同意</label>
+</div></div>
+
+<!-- Q8 共情/解码 (reverse) -->
+<div class="q-card"><div class="q-num">08</div><div class="q-text">"比起和人打交道，我更享受和代码/数据/系统相处。"</div>
+<div class="likert">
+  <input type="radio" name="q8" id="q8_1" value="5"><label for="q8_1">完全<br>不同意</label>
+  <input type="radio" name="q8" id="q8_2" value="4"><label for="q8_2">不太<br>同意</label>
+  <input type="radio" name="q8" id="q8_3" value="3"><label for="q8_3">中立</label>
+  <input type="radio" name="q8" id="q8_4" value="2"><label for="q8_4">比较<br>同意</label>
+  <input type="radio" name="q8" id="q8_5" value="1"><label for="q8_5">完全<br>同意</label>
+</div></div>
+
+<!-- Q9 稳锚/扬帆 -->
+<div class="q-card"><div class="q-num">09</div><div class="q-text">"考公/考编/国企是我的优先选择。"</div>
+<div class="likert">
+  <input type="radio" name="q9" id="q9_1" value="1"><label for="q9_1">完全<br>不同意</label>
+  <input type="radio" name="q9" id="q9_2" value="2"><label for="q9_2">不太<br>同意</label>
+  <input type="radio" name="q9" id="q9_3" value="3"><label for="q9_3">中立</label>
+  <input type="radio" name="q9" id="q9_4" value="4"><label for="q9_4">比较<br>同意</label>
+  <input type="radio" name="q9" id="q9_5" value="5"><label for="q9_5">完全<br>同意</label>
+</div></div>
+
+<!-- Q10 蓝图/即兴 (reverse) -->
+<div class="q-card"><div class="q-num">10</div><div class="q-text">"gap year / 慢就业是探索自我的好方式。"</div>
+<div class="likert">
+  <input type="radio" name="q10" id="q10_1" value="5"><label for="q10_1">完全<br>不同意</label>
+  <input type="radio" name="q10" id="q10_2" value="4"><label for="q10_2">不太<br>同意</label>
+  <input type="radio" name="q10" id="q10_3" value="3"><label for="q10_3">中立</label>
+  <input type="radio" name="q10" id="q10_4" value="2"><label for="q10_4">比较<br>同意</label>
+  <input type="radio" name="q10" id="q10_5" value="1"><label for="q10_5">完全<br>同意</label>
+</div></div>
+
+<!-- Q11 堡垒/旷野 -->
+<div class="q-card"><div class="q-num">11</div><div class="q-text">"创业风险太大，不适合我。"</div>
+<div class="likert">
+  <input type="radio" name="q11" id="q11_1" value="1"><label for="q11_1">完全<br>不同意</label>
+  <input type="radio" name="q11" id="q11_2" value="2"><label for="q11_2">不太<br>同意</label>
+  <input type="radio" name="q11" id="q11_3" value="3"><label for="q11_3">中立</label>
+  <input type="radio" name="q11" id="q11_4" value="4"><label for="q11_4">比较<br>同意</label>
+  <input type="radio" name="q11" id="q11_5" value="5"><label for="q11_5">完全<br>同意</label>
+</div></div>
+
+<!-- Q12 共情/解码 -->
+<div class="q-card"><div class="q-num">12</div><div class="q-text">"我理想的职业是能直接帮助到他人的。"</div>
+<div class="likert">
+  <input type="radio" name="q12" id="q12_1" value="1"><label for="q12_1">完全<br>不同意</label>
+  <input type="radio" name="q12" id="q12_2" value="2"><label for="q12_2">不太<br>同意</label>
+  <input type="radio" name="q12" id="q12_3" value="3"><label for="q12_3">中立</label>
+  <input type="radio" name="q12" id="q12_4" value="4"><label for="q12_4">比较<br>同意</label>
+  <input type="radio" name="q12" id="q12_5" value="5"><label for="q12_5">完全<br>同意</label>
+</div></div>
+
+<!-- Q13 稳锚/扬帆 (reverse) -->
+<div class="q-card"><div class="q-num">13</div><div class="q-text">"我宁可创业失败，也不愿在体制内一眼望到头。"</div>
+<div class="likert">
+  <input type="radio" name="q13" id="q13_1" value="5"><label for="q13_1">完全<br>不同意</label>
+  <input type="radio" name="q13" id="q13_2" value="4"><label for="q13_2">不太<br>同意</label>
+  <input type="radio" name="q13" id="q13_3" value="3"><label for="q13_3">中立</label>
+  <input type="radio" name="q13" id="q13_4" value="2"><label for="q13_4">比较<br>同意</label>
+  <input type="radio" name="q13" id="q13_5" value="1"><label for="q13_5">完全<br>同意</label>
+</div></div>
+
+<!-- Q14 蓝图/即兴 -->
+<div class="q-card"><div class="q-num">14</div><div class="q-text">"没有明确规划的人生让我感到焦虑。"</div>
+<div class="likert">
+  <input type="radio" name="q14" id="q14_1" value="1"><label for="q14_1">完全<br>不同意</label>
+  <input type="radio" name="q14" id="q14_2" value="2"><label for="q14_2">不太<br>同意</label>
+  <input type="radio" name="q14" id="q14_3" value="3"><label for="q14_3">中立</label>
+  <input type="radio" name="q14" id="q14_4" value="4"><label for="q14_4">比较<br>同意</label>
+  <input type="radio" name="q14" id="q14_5" value="5"><label for="q14_5">完全<br>同意</label>
+</div></div>
+
+<!-- Q15 堡垒/旷野 (reverse) -->
+<div class="q-card"><div class="q-num">15</div><div class="q-text">"我对'团播'这类新兴业态持开放态度，有机会会尝试。"</div>
+<div class="likert">
+  <input type="radio" name="q15" id="q15_1" value="5"><label for="q15_1">完全<br>不同意</label>
+  <input type="radio" name="q15" id="q15_2" value="4"><label for="q15_2">不太<br>同意</label>
+  <input type="radio" name="q15" id="q15_3" value="3"><label for="q15_3">中立</label>
+  <input type="radio" name="q15" id="q15_4" value="2"><label for="q15_4">比较<br>同意</label>
+  <input type="radio" name="q15" id="q15_5" value="1"><label for="q15_5">完全<br>同意</label>
+</div></div>
+
+<!-- Q16 共情/解码 (reverse) -->
+<div class="q-card"><div class="q-num">16</div><div class="q-text">"AI和技术工具是我职业发展的核心武器。"</div>
+<div class="likert">
+  <input type="radio" name="q16" id="q16_1" value="5"><label for="q16_1">完全<br>不同意</label>
+  <input type="radio" name="q16" id="q16_2" value="4"><label for="q16_2">不太<br>同意</label>
+  <input type="radio" name="q16" id="q16_3" value="3"><label for="q16_3">中立</label>
+  <input type="radio" name="q16" id="q16_4" value="2"><label for="q16_4">比较<br>同意</label>
+  <input type="radio" name="q16" id="q16_5" value="1"><label for="q16_5">完全<br>同意</label>
+</div></div>
+
+<div class="btn-row">
+  <button type="button" class="btn btn-secondary" onclick="resetForm()">↺ 重新填写</button>
+  <button type="submit" class="btn btn-primary">🔮 查看我的职业人格</button>
+</div>
+
+</form>
+</div>
+
+<script>
+// Update progress
+document.querySelectorAll('input[type="radio"]').forEach(r=>r.addEventListener('change',updateProgress));
+function updateProgress(){
+  let answered=0;
+  for(let i=1;i<=16;i++){if(document.querySelector('input[name="q'+i+'"]:checked'))answered++;}
+  document.getElementById('progressBar').style.width=Math.round(answered/16*100)+'%';
+  document.getElementById('progressText').textContent=answered+'/16';
+}
+
+function resetForm(){
+  document.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);
+  updateProgress();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+document.getElementById('testForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const missing=[];
+  for(let i=1;i<=16;i++){if(!document.querySelector('input[name="q'+i+'"]:checked'))missing.push(i);}
+  if(missing.length>0){
+    const toast=document.getElementById('errToast');
+    toast.textContent='还有 '+missing.length+' 题未作答，请完成后再查看结果';
+    toast.classList.add('show');
+    setTimeout(()=>toast.classList.remove('show'),2500);
+    document.querySelector('.q-card:nth-of-type('+missing[0]+')').scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  showResult();
+});
+
+function getVal(n){return parseInt(document.querySelector('input[name="q'+n+'"]:checked').value);}
+
+function showResult(){
+  // Dimension scores (each 4 questions, max 20)
+  // D1 稳锚/扬帆: Q1, Q5(r), Q9, Q13(r) — higher = 稳锚(Anchor)
+  const d1 = getVal(1) + getVal(5) + getVal(9) + getVal(13);
+  // D2 蓝图/即兴: Q2(r), Q6, Q10(r), Q14 — higher = 蓝图(Blueprint)
+  const d2 = getVal(2) + getVal(6) + getVal(10) + getVal(14);
+  // D3 堡垒/旷野: Q3, Q7(r), Q11, Q15(r) — higher = 堡垒(Fortress)
+  const d3 = getVal(3) + getVal(7) + getVal(11) + getVal(15);
+  // D4 共情/解码: Q4, Q8(r), Q12, Q16(r) — higher = 共情(Empathy)
+  const d4 = getVal(4) + getVal(8) + getVal(12) + getVal(16);
+
+  const split=12; // split point
+  const A=d1>=split?'A':'S'; // Anchor vs Sail
+  const B=d2>=split?'B':'I'; // Blueprint vs Improv
+  const F=d3>=split?'F':'W'; // Fortress vs Wild
+  const E=d4>=split?'E':'D'; // Empathy vs Decode
+
+  const code=A+B+F+E;
+
+  // Type definitions
+  const types={
+    'ABFE':{name:'铁饭碗守护者',badge:'🏛',color:'#2d6a8b',
+      desc:'你是体制信仰的坚定拥护者。对稳定、安全和可预期的职业路径有天然的亲近感，享受按部就班、步步为营的成长节奏。在"考公热"席卷全国的当下，你是走在最前列的那个人。',
+      strengths:['风险意识强，财务决策稳健','规划能力出众，不打无准备之仗','共情力强，擅长协作型工作环境'],
+      careers:['公务员/事业单位','国企职能岗','教育机构','银行/保险后台'],
+      advice:'稳中求进是优势，但也要警惕过度规避风险导致机会流失。偶尔走出舒适区，尝试一个"小冒险"，也许会打开新世界。'},
+    'ABFD':{name:'精密架构师',badge:'🏗',color:'#5b3a6e',
+      desc:'稳定不是你的终点，精确才是。你既渴望体制的安全感，又迷恋系统和技术的秩序之美。你是能把"铁饭碗"玩出科技感的那个人——体制内的数字化推手。',
+      strengths:['逻辑清晰，系统性思维强','在规则中找最优解的能力突出','技术与管理的双重潜力'],
+      careers:['政务数字化/智慧城市','国企IT/数据岗','金融科技（FinTech）','科研院所/实验室'],
+      advice:'你的能力在体制内技术岗会大放异彩，但也许低估了自己在纯技术公司的竞争力。不妨做一次"体制外"的面试，至少心中有数。'},
+    'ABWE':{name:'温暖规划师',badge:'🌸',color:'#b7476e',
+      desc:'你是一个"带温度的系统"。既需要在安稳的框架中前行，又渴望旅途中有风景和人情。你可能是那个在体制内做社工、在国企做员工关怀的人——把稳定活出了温度。',
+      strengths:['极强的人际敏感度和沟通力','在稳定环境中能最大化创造力','善于平衡规则与灵活'],
+      careers:['高校行政/辅导员','社会组织/NGO','公共政策研究','企业HR/员工发展'],
+      advice:'你的"旷野"面让你在稳定岗位中脱颖而出，但别让它被日常琐碎消磨。定期给自己一个"冒险配额"——比如业余时间做一个小项目。'},
+    'ABWD':{name:'科技体制派',badge:'🔬',color:'#2d6a8b',
+      desc:'左手铁饭碗，右手黑科技。你信仰制度的力量，但工具必须是这个时代最锋利的。你是那个用AI写公文、用数据做决策的新一代体制精英。',
+      strengths:['前瞻性技术嗅觉+务实落地能力','在官僚体系中保持极客精神','理性决策，数据驱动'],
+      careers:['科技政策研究','数据局/统计局','央企研究院','军队文职技术岗'],
+      advice:'你的能力组合非常稀缺——既懂技术又耐得住体制的节奏。但要小心"大材小用"的困局，选择平台时，看它对技术的重视程度比看薪资更重要。'},
+
+    'AIFE':{name:'稳健调适者',badge:'🌿',color:'#3d7a5c',
+      desc:'你不排斥稳定，但不被稳定定义。你的规划是"大方向+留白"，给自己保留了转身的空间。你是那种看似随和，实则内心有谱的人——稳得住，也转得动。',
+      strengths:['适应力强，能在变化中保持平衡','既不过度焦虑也不过度散漫','人缘好，团队润滑剂'],
+      careers:['中小学教育','公共事务管理','社区服务','行政/教务'],
+      advice:'"恰到好处"的佛系是你的优势，但有时也会让你在关键节点"差一口气"。找到一件你愿意为之拼尽全力的事，哪怕只有一件。'},
+    'AIFD':{name:'理性观察者',badge:'🦉',color:'#5b3a6e',
+      desc:'你是人群中最冷静的那个。不急着站队，不忙着表态，用数据和逻辑默默评估每一个选项。你追求稳定但不盲从，喜欢技术但不狂热——有温度的理性是你的底色。',
+      strengths:['独立思考，不易被带节奏','分析能力强，看问题一针见血','在技术与人之间找到平衡点'],
+      careers:['数据分析','市场研究','图书情报/档案管理','质量管理/审计'],
+      advice:'你的"冷静"有时会被误读为"冷漠"。偶尔向外界展示你的思考和热情，会帮你打开更多的人脉和机会。'},
+    'AIWE':{name:'灵活关怀者',badge:'🕊',color:'#b7476e',
+      desc:'你是团队中的"心灵捕手"。不执著于条条框框，但总能在关键时刻给对人温暖和支持。规则为你服务，而不是束缚你。你在灵活中保持善意，在变化中守住初心。',
+      strengths:['极强的情感洞察力','在非结构化环境中游刃有余','善于链接人与人'],
+      careers:['心理咨询/社工','自由职业（撰稿/设计/翻译）','用户研究/体验设计','社区营造/城市更新'],
+      advice:'你的灵活性让你能进入很多领域，但也容易"样样通样样松"。选择一个你最想深耕的方向，把"野"变成"专"。'},
+    'AIWD':{name:'破格极客',badge:'💡',color:'#c44a5e',
+      desc:'你不走寻常路，不是因为叛逆，而是因为你的思维本就不在常规轨道上。你不喜欢被体制束缚，但也不是无目的的流浪者。技术和创意是你的双翼，你在探索一种"自由且专业"的生活方式。',
+      strengths:['创造性问题解决能力','自学能力强，快速掌握新工具','独立工作能力突出'],
+      careers:['自由开发者/独立开发者','科技自媒体/知识付费','远程办公/数字游民','AI产品/创业'],
+      advice:'自由是好事，但完全的自由有时意味着"没有杠杆"。找到一个能放大你个人能力的平台或社群，你的价值会被更多人看见。'},
+
+    'SBFE':{name:'务实开拓者',badge:'🚀',color:'#b87a20',
+      desc:'你有开拓的野心，也有落地的耐心。你不惧怕市场的风浪，但也不会裸泳——你的冒险是有Plan B的。这种"戴着镣铐跳舞"的能力让你在创业或市场搏击中比别人走得更远。',
+      strengths:['敢想敢干且执行力强','风险收益比判断力精准','善于在团队中担任推动者角色'],
+      careers:['创业公司早期员工','项目管理/产品经理','企业管理咨询','连锁加盟/实体创业'],
+      advice:'你的平衡感很强，但有时Plan B的过度准备会拖慢Plan A的节奏。给"冲动"留一点空间——最好的机会往往不等人把所有准备做完。'},
+    'SBFD':{name:'战略建构者',badge:'🏰',color:'#2d6a8b',
+      desc:'你不是赌徒，你是建筑师。你看得见远方，也画得出蓝图。你敢于进入市场搏杀，但每一步都有精密的推演。你是那种"三年上市、五年退出"的计划制定者。',
+      strengths:['宏大视野与细节把控并存','极强的行业分析能力','技术+商业的双重直觉'],
+      careers:['科技创业（SaaS/平台型）','风险投资/私募','战略咨询','技术管理/CTO路线'],
+      advice:'你的计划性让你在创业时比大多数人成功率高，但也要警惕"纸上谈兵"。最好的验证是——现在就去和10个目标用户聊一聊。'},
+    'SBWE':{name:'社会创新家',badge:'🌈',color:'#b7476e',
+      desc:'你不只想赚钱，还想让世界变好一点点。你的开拓精神指向的不是个人财富，而是社会价值。你可能是那个用商业模式解决社会问题的人——社会企业的天然创始人。',
+      strengths:['价值驱动的强大内驱力','善于链接跨界资源','共情力+执行力=稀缺组合'],
+      careers:['社会企业/共益企业','公益基金会/影响力投资','教育创新/教育科技','社区经济/银发经济'],
+      advice:'情怀让你出发，但可持续的商业模式让你走远。不要羞于谈钱——一个赚钱的社会企业比一个死掉的理想更有力量。'},
+    'SBWD':{name:'数字游侠',badge:'⚡',color:'#c44a5e',
+      desc:'你是游走于前沿的自由灵魂。技术和冒险是你的双重引擎——你不喜欢被任何东西束缚，不管是体制还是传统行业框架。远程工作、数字游民、独立创客，这些词写的就是你。',
+      strengths:['技术能力+冒险精神的稀缺组合','在新兴领域有天然的先发优势','独立作战和快速迭代能力'],
+      careers:['Web3/区块链/去中心化','独立SaaS产品','跨境电商/AI电商','数字游民/全球远程办公'],
+      advice:'你是"新经济"的天然原住民，但独立作战有天花板。找到2-3个志同道合的伙伴，你们能撬动的远大于一个人的力量。'},
+
+    'SIFE':{name:'自由园丁',badge:'🎨',color:'#3d7a5c',
+      desc:'你的自由不是逃离，而是选择——选择在喜欢的时间、喜欢的地点、和喜欢的人一起做事。你像园丁一样耐心培育自己的事业，不急不躁，静待花开。',
+      strengths:['在低压环境中产出高质量作品','生活与工作的自然融合能力','人际关系的滋养者'],
+      careers:['自媒体/内容创作者','手工艺/独立设计','民宿/小型餐饮创业','自由教育培训'],
+      advice:'"园丁"的慢节奏在今天很稀缺也很珍贵，但要建立一个稳定的客户/粉丝基础。把你的作品或服务"产品化"——让爱你的人能反复购买。'},
+    'SIFD':{name:'冷静冒险家',badge:'🏔',color:'#5b3a6e',
+      desc:'你的内心燃烧着探索的火焰，但表面波澜不惊。你是用数据做决策的冒险者——挑战未知，但不靠运气靠逻辑。你的冒险是"算过的"，不是"赌的"。',
+      strengths:['理性冒险——最稀缺的决策风格','独立判断力+技术能力的双重保障','在混乱中建立秩序'],
+      careers:['量化金融/算法交易','AI创业/技术创业','网络安全/白帽黑客','期货/大宗商品交易'],
+      advice:'你的冷静让周围的人信任你的判断，但也可能让人觉得你"太冷"。偶尔展示你的passion——投资人投的不仅是项目，也是人。'},
+    'SIWE':{name:'斜杠生活家',badge:'✨',color:'#b7476e',
+      desc:'你的人生不是一条直线，而是一幅拼贴画。你拥抱每一种可能性——今天做博主、明天做咨询、后天搞活动。你不是"不定性"，你是"不定于一"。多元本身就是你的职业策略。',
+      strengths:['极强的适应力和快速学习能力','在不同身份间自如切换','天然的个人品牌基因'],
+      careers:['斜杠青年/多重职业','生活方式博主/个人IP','活动策划/社群运营','体验式消费创业'],
+      advice:'斜杠人生很精彩，但要确保至少有一条"杠"能带来稳定收入。当你把多元变成方法论而非随机游走时，你的不可替代性就出现了。'},
+    'SIWD':{name:'星辰大海探险家',badge:'🌌',color:'#c44a5e',
+      desc:'同学，你可能是这个测试里最"野"的那一个。你不在意别人的路怎么走，因为你打算自己开创一条。体制、传统、按部就班——这些词和你的关系就像水和油。你是新世界的原住民，旧世界的规则不适用于你。',
+      strengths:['无限可能性的开拓者','技术+冒险+即兴=破坏性创新潜力','不受任何框架限制的创造力'],
+      careers:['前沿科技创业（AI/航天/生物科技）','独立游戏/VR/元宇宙','全球数字游民','任何还不存在的职业'],
+      advice:'你的上限极高，但下限也可能很低。给自己设一个"止损线"和"时间节点"——比如"两年后如果月入不过万就调整方向"。这不是妥协，是为下一次起飞储备燃料。'}
+  };
+
+  const t=types[code];
+  const dimNames={
+    A:'稳锚',S:'扬帆',B:'蓝图',I:'即兴',F:'堡垒',W:'旷野',E:'共情',D:'解码'
+  };
+  const dimColors={A:'#2d6a8b',S:'#b87a20',B:'#b87a20',I:'#3d7a5c',F:'#c44a5e',W:'#3d7a5c',E:'#b7476e',D:'#5b3a6e'};
+
+  document.getElementById('resultCard').innerHTML=`
+    <span class="type-badge" style="background:${t.color}20;color:${t.color}">${t.badge} ${code}</span>
+    <div class="type-code">${code}</div>
+    <div class="type-name">「${t.name}」</div>
+    <p class="type-desc">${t.desc}</p>
+    <div class="dims-display">
+      ${[['稳锚·扬帆',A,d1],['蓝图·即兴',B,d2],['堡垒·旷野',F,d3],['共情·解码',E,d4]].map(([label,letter,score])=>`
+        <div class="dim-item"><strong style="color:${dimColors[letter]}">${label.split('·')[0]}侧</strong> ${dimNames[letter]} · ${score}/20</div>
+      `).join('')}
+    </div>
+    <div class="type-section">
+      <h4>🌟 你的优势</h4>
+      <div class="tag-row">${t.strengths.map(s=>`<span>${s}</span>`).join('')}</div>
+    </div>
+    <div class="type-section">
+      <h4>💼 适合行业</h4>
+      <div class="tag-row">${t.careers.map(c=>`<span>${c}</span>`).join('')}</div>
+    </div>
+    <div class="type-section">
+      <h4>💬 发展建议</h4>
+      <p style="font-size:0.88em;color:var(--text2);margin-top:4px">${t.advice}</p>
+    </div>
+    <p style="margin-top:16px;font-size:0.75em;color:var(--muted)">基于《当代女大学生创业就业趋势分析》研究数据构建 · 仅供娱乐参考</p>
+    <div class="share-row">
+      <button class="share-btn copy" onclick="copyResult('${code}','${t.name}')">📋 复制结果</button>
+      <button class="btn btn-secondary" style="font-size:0.85em;padding:8px 18px;border-radius:20px" onclick="document.getElementById('resultOverlay').classList.remove('show')">← 返回修改</button>
+    </div>
+  `;
+  document.getElementById('resultOverlay').classList.add('show');
+  document.getElementById('resultOverlay').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function copyResult(code,name){
+  const text=`🔮 我的「她势·职向力」职业人格：${code}「${name}」\n\n—— 基于当代女大学生创业就业趋势研究\n测测你的：https://woodrelfay.github.io/nusurvey/career-test`;
+  if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>alert('已复制！分享给你的朋友吧~'));}
+  else{alert(text);}
+}
+
+updateProgress();
+</script>
+</body>
+</html>
