@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -155,22 +155,8 @@ body{font-family:var(--font);background:linear-gradient(180deg,#fdf8fa 0%,#faf8f
   </ul>
 </div>
 
-<div class="q-card" id="q2-card">
-  <div class="q-num required">Q2 · 分轨题</div>
-  <div class="q-title">您目前就读的年级是？</div>
-  <div class="q-hint">此题将决定后续问卷内容，请准确选择</div>
-  <ul class="option-list">
-    <li class="option-item"><input type="radio" name="q2" id="q2a" value="A" data-track="a"><label for="q2a"><strong>A. 大一</strong> — 刚入学，处于探索适应期</label></li>
-    <li class="option-item"><input type="radio" name="q2" id="q2b" value="B" data-track="b"><label for="q2b"><strong>B. 大二 / 大三</strong> — 处于学业中期，开始思考职业方向</label></li>
-    <li class="option-item"><input type="radio" name="q2" id="q2c" value="C" data-track="c"><label for="q2c"><strong>C. 大四 / 大五（应届毕业生）</strong> — 即将或正在面临就业抉择</label></li>
-    <li class="option-item"><input type="radio" name="q2" id="q2d" value="D" data-track="c"><label for="q2d">D. 硕士研究生</label></li>
-    <li class="option-item"><input type="radio" name="q2" id="q2e" value="E" data-track="c"><label for="q2e">E. 博士研究生</label></li>
-    <li class="option-item"><input type="radio" name="q2" id="q2f" value="F" data-track="c"><label for="q2f">F. 已毕业</label></li>
-  </ul>
-</div>
-
 <div class="q-card" id="q3-card">
-  <div class="q-num required">Q3</div>
+  <div class="q-num required">Q2</div>
   <div class="q-title">您就读的院校类型是？</div>
   <ul class="option-list">
     <li class="option-item"><input type="radio" name="q3" id="q3a" value="A"><label for="q3a">A. 双一流/985/211高校</label></li>
@@ -182,7 +168,7 @@ body{font-family:var(--font);background:linear-gradient(180deg,#fdf8fa 0%,#faf8f
 </div>
 
 <div class="q-card" id="q4-card">
-  <div class="q-num required">Q4</div>
+  <div class="q-num required">Q3</div>
   <div class="q-title">您的专业所属学科门类是？</div>
   <ul class="option-list">
     <li class="option-item"><input type="radio" name="q4" id="q4a" value="A"><label for="q4a">A. 理学（数学、物理、化学、生物等）</label></li>
@@ -197,6 +183,20 @@ body{font-family:var(--font);background:linear-gradient(180deg,#fdf8fa 0%,#faf8f
     <li class="option-item"><input type="radio" name="q4" id="q4j" value="J"><label for="q4j">J. 其他：</label><input type="text" class="text-input short" id="q4j_text" placeholder="请注明" style="display:inline-block;margin-left:4px;width:150px"></li>
   </ul>
 </div>
+<div class="q-card" id="q2-card">
+  <div class="q-num required">Q4 · 分轨题</div>
+  <div class="q-title">您目前就读的年级是？</div>
+  <div class="q-hint">填完以上基本信息后，请选择您的年级——后续问卷将自动匹配对应内容</div>
+  <ul class="option-list">
+    <li class="option-item"><input type="radio" name="q2" id="q2a" value="A" data-track="a"><label for="q2a"><strong>A. 大一</strong> — 刚入学，处于探索适应期</label></li>
+    <li class="option-item"><input type="radio" name="q2" id="q2b" value="B" data-track="b"><label for="q2b"><strong>B. 大二 / 大三</strong> — 处于学业中期，开始思考职业方向</label></li>
+    <li class="option-item"><input type="radio" name="q2" id="q2c" value="C" data-track="c"><label for="q2c"><strong>C. 大四 / 大五（应届毕业生）</strong> — 即将或正在面临就业抉择</label></li>
+    <li class="option-item"><input type="radio" name="q2" id="q2d" value="D" data-track="c"><label for="q2d">D. 硕士研究生</label></li>
+    <li class="option-item"><input type="radio" name="q2" id="q2e" value="E" data-track="c"><label for="q2e">E. 博士研究生</label></li>
+    <li class="option-item"><input type="radio" name="q2" id="q2f" value="F" data-track="c"><label for="q2f">F. 已毕业</label></li>
+  </ul>
+</div>
+
 
 <!-- ===== TRACK SWITCH NOTICE ===== -->
 <div id="trackSwitchNotice">📋 根据您的年级，以下为您量身定制的问卷内容</div>
