@@ -68,6 +68,18 @@ body{font-family:var(--font);background:linear-gradient(180deg,#fdf8fa 0%,#faf8f
 .sort-input:focus{outline:none;border-color:var(--accent2)}
 .sort-example{font-size:0.82em;color:var(--muted);margin-top:4px}
 
+/* Drag sort */
+.sort-list{list-style:none;user-select:none}
+.sort-item{display:flex;align-items:center;gap:8px;padding:10px 14px;margin:6px 0;background:#fdfdfc;border:1.5px solid #e8e3e0;border-radius:8px;cursor:grab;transition:all 0.15s;font-size:0.92em}
+.sort-item:active{cursor:grabbing}
+.sort-item:hover{border-color:#d5c8c0;background:#fdf8fa}
+.sort-item.dragging{opacity:0.4;border-style:dashed}
+.sort-item.drag-over{border-color:var(--accent);background:#fef5f7;box-shadow:0 0 0 3px rgba(183,71,110,0.08);transform:translateY(-1px)}
+.sort-item .grip{color:#ccc;font-size:1.1em;line-height:1;flex-shrink:0;letter-spacing:-2px}
+.sort-item .sort-letter{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:12px;background:var(--accent-light);color:var(--accent);font-weight:700;font-size:0.85em;flex-shrink:0}
+.sort-item .sort-label{flex:1}
+.sort-item .sort-rank{font-size:0.75em;color:var(--muted);flex-shrink:0;min-width:28px;text-align:right}
+
 .q-textarea{width:100%;min-height:100px;padding:10px 14px;border:1px solid var(--border);border-radius:6px;font-size:0.92em;font-family:var(--font);resize:vertical}
 .q-textarea:focus{outline:none;border-color:var(--accent2)}
 
@@ -430,12 +442,16 @@ body{font-family:var(--font);background:linear-gradient(180deg,#fdf8fa 0%,#faf8f
 </ul></div>
 
 <div class="q-card"><div class="q-num required">B8</div><div class="q-title">择业时，请对以下因素按重要性排序：</div>
-<div class="q-hint">用 > 连接，例如：A > C > B > E > D > F</div>
-<ul style="list-style:none;margin-bottom:10px;font-size:0.9em">
-<li>A. 薪资待遇 &nbsp; B. 工作稳定性与编制 &nbsp; C. 个人兴趣与成长空间</li>
-<li>D. 工作地点与通勤 &nbsp; E. 工作强度与加班文化 &nbsp; F. 行业前景与公司规模</li>
+<div class="q-hint">按住 ⋮⋮ 拖拽调整顺序，越靠上越重要</div>
+<ul class="sort-list" id="sortB8">
+<li class="sort-item" draggable="true" data-value="A"><span class="grip">⋮⋮</span><span class="sort-letter">A</span><span class="sort-label">薪资待遇</span><span class="sort-rank">第1位</span></li>
+<li class="sort-item" draggable="true" data-value="B"><span class="grip">⋮⋮</span><span class="sort-letter">B</span><span class="sort-label">工作稳定性与编制</span><span class="sort-rank">第2位</span></li>
+<li class="sort-item" draggable="true" data-value="C"><span class="grip">⋮⋮</span><span class="sort-letter">C</span><span class="sort-label">个人兴趣与成长空间</span><span class="sort-rank">第3位</span></li>
+<li class="sort-item" draggable="true" data-value="D"><span class="grip">⋮⋮</span><span class="sort-letter">D</span><span class="sort-label">工作地点与通勤</span><span class="sort-rank">第4位</span></li>
+<li class="sort-item" draggable="true" data-value="E"><span class="grip">⋮⋮</span><span class="sort-letter">E</span><span class="sort-label">工作强度与加班文化</span><span class="sort-rank">第5位</span></li>
+<li class="sort-item" draggable="true" data-value="F"><span class="grip">⋮⋮</span><span class="sort-letter">F</span><span class="sort-label">行业前景与公司规模</span><span class="sort-rank">第6位</span></li>
 </ul>
-<input type="text" class="sort-input" name="tb8" placeholder="例如：A > C > B > E > D > F"></div>
+<input type="hidden" name="tb8" id="tb8val" value=""></div>
 
 <div class="q-card"><div class="q-num required">B9</div><div class="q-title">你或身边女性同学在实习/求职中是否遭遇过性别相关的不公正对待？（多选）<span class="verify-tag c">验证锚点C</span></div>
 <ul class="option-list">
@@ -914,7 +930,53 @@ document.getElementById('surveyForm').addEventListener('submit',function(e){
   window.scrollTo({top:0,behavior:'smooth'});
 });
 
-updateProgress();
+	// Drag-and-drop sort for B8
+	const sortList = document.getElementById('sortB8');
+	if(sortList){
+	  let dragItem = null;
+	  sortList.querySelectorAll('.sort-item').forEach(item => {
+	    item.addEventListener('dragstart', function(e){
+	      dragItem = this;
+	      this.classList.add('dragging');
+	      e.dataTransfer.effectAllowed = 'move';
+	      e.dataTransfer.setData('text/plain', '');
+	      setTimeout(() => { if(dragItem===this) this.style.display='none'; }, 0);
+	    });
+	    item.addEventListener('dragend', function(){
+	      this.classList.remove('dragging');
+	      this.style.display = '';
+	      sortList.querySelectorAll('.sort-item').forEach(it => it.classList.remove('drag-over'));
+	      dragItem = null;
+	      updateSortB8();
+	    });
+	    item.addEventListener('dragover', function(e){
+	      e.preventDefault();
+	      e.dataTransfer.dropEffect = 'move';
+	      if(this !== dragItem) this.classList.add('drag-over');
+	    });
+	    item.addEventListener('dragleave', function(){ this.classList.remove('drag-over'); });
+	    item.addEventListener('drop', function(e){
+	      e.preventDefault();
+	      this.classList.remove('drag-over');
+	      if(this !== dragItem && dragItem){
+	        sortList.insertBefore(dragItem, this.nextSibling === dragItem ? this : this);
+	      }
+	    });
+	    // Touch support
+	    item.addEventListener('touchstart', function(){ this.classList.add('dragging'); });
+	    item.addEventListener('touchend', function(){ this.classList.remove('dragging'); updateSortB8(); });
+	  });
+	}
+	function updateSortB8(){
+	  const items = sortList.querySelectorAll('.sort-item');
+	  const order = Array.from(items).map(el => el.dataset.value);
+	  document.getElementById('tb8val').value = order.join(',');
+	  items.forEach((el,i) => { el.querySelector('.sort-rank').textContent = '第'+(i+1)+'位'; });
+	  updateProgress();
+	}
+	updateSortB8();
+
+	updateProgress();
 </script>
 </body>
 </html>
