@@ -3,490 +3,500 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>「她势·职向力」职业人格测试</title>
+<title>「职人图鉴·她」职业人格测试</title>
 <style>
 :root {
   --bg:#faf8f6; --card:#fff; --text:#1a1a2e; --text2:#555; --muted:#999;
   --border:#e5e0db; --accent:#b7476e; --accent2:#e8739b;
   --purple:#5b3a6e; --green:#3d7a5c; --gold:#b87a20; --blue:#2d6a8b;
-  --radius:10px;
-  --shadow:0 2px 4px rgba(0,0,0,0.04),0 8px 24px rgba(0,0,0,0.05);
+  --radius:12px;
+  --shadow:0 2px 4px rgba(0,0,0,0.03),0 8px 24px rgba(0,0,0,0.04);
   --font:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",-apple-system,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font);background:linear-gradient(180deg,#fdf8fa 0%,#faf8f6 100%);color:var(--text);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
 
-/* Hero */
-.hero{background:linear-gradient(160deg,#1a0f16 0%,#2d1525 40%,#4a2348 100%);color:#fff;text-align:center;padding:44px 0 36px;position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;bottom:-60px;right:-80px;width:240px;height:240px;background:radial-gradient(circle,rgba(183,71,110,0.25) 0%,transparent 70%);border-radius:50%}
+.hero{background:linear-gradient(160deg,#1a0f16 0%,#2d1525 40%,#4a2348 100%);color:#fff;text-align:center;padding:40px 0 32px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;bottom:-80px;right:-100px;width:280px;height:280px;background:radial-gradient(circle,rgba(232,115,155,0.2) 0%,transparent 70%);border-radius:50%}
 .hero-inner{max-width:680px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
-.hero .tag{display:inline-block;font-size:0.72em;letter-spacing:3px;padding:4px 14px;border:1px solid rgba(255,255,255,0.3);border-radius:20px;margin-bottom:12px;text-transform:uppercase}
-.hero h1{font-size:1.9em;font-weight:800;letter-spacing:2px;margin-bottom:4px}
-.hero h1 em{font-style:normal;color:var(--accent2)}
-.hero .sub{font-size:0.88em;opacity:0.7;margin-top:4px}
+.hero .tag{display:inline-block;font-size:0.7em;letter-spacing:4px;padding:5px 16px;border:1px solid rgba(255,255,255,0.25);border-radius:20px;margin-bottom:10px}
+.hero h1{font-size:2em;font-weight:800;letter-spacing:3px;margin-bottom:4px}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,#e8739b,#f0a0bb);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .sub{font-size:0.85em;opacity:0.68;margin-top:2px}
 
-/* Container */
 .container{max-width:640px;margin:0 auto;padding:24px 20px 60px}
 
-/* Intro card */
 .intro-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px 24px;margin-bottom:24px;border:1px solid var(--border);text-align:center}
-.intro-card h2{font-size:1.15em;color:var(--purple);margin-bottom:8px}
-.intro-card p{color:var(--text2);font-size:0.9em;line-height:1.8}
-.intro-card .dims{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px}
-.intro-card .dim-tag{padding:6px 14px;border-radius:16px;font-size:0.8em;font-weight:600}
-.dim-tag.d1{background:#e4eef8;color:var(--blue)}
-.dim-tag.d2{background:#fef3e0;color:var(--gold)}
-.dim-tag.d3{background:#fde8ec;color:#c44a5e}
-.dim-tag.d4{background:#e8f4f0;color:var(--green)}
+.intro-card h2{font-size:1.1em;color:var(--purple);margin-bottom:6px}
+.intro-card p{color:var(--text2);font-size:0.88em;line-height:1.8}
+.intro-card .dims{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+.intro-card .dim-tag{padding:5px 12px;border-radius:16px;font-size:0.78em;font-weight:600}
+.dim-tag.d1{background:#e4eef8;color:var(--blue)} .dim-tag.d2{background:#fef3e0;color:var(--gold)}
+.dim-tag.d3{background:#fde8ec;color:#c44a5e} .dim-tag.d4{background:#e8f4f0;color:var(--green)}
 
-/* Progress */
 .progress-wrap{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:12px 20px}
 .progress-inner{max-width:640px;margin:0 auto;display:flex;align-items:center;gap:12px}
 .progress-bar-outer{flex:1;height:6px;background:#eee;border-radius:6px;overflow:hidden}
 .progress-bar-inner{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:6px;transition:width 0.4s}
 .progress-text{font-size:0.85em;font-weight:600;color:var(--accent);white-space:nowrap}
 
-/* Question card */
-.q-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 24px;margin:14px 0;border:1px solid var(--border)}
-.q-card .q-num{display:inline-block;padding:2px 10px;border-radius:12px;font-size:0.76em;font-weight:700;background:#fef5f7;color:var(--accent);margin-bottom:10px}
-.q-card .q-text{font-weight:600;font-size:1em;margin-bottom:14px;line-height:1.5}
+.q-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 24px;margin:12px 0;border:1px solid var(--border);transition:border-color 0.3s}
+.q-card:hover{border-color:#e5d0d8}
+.q-card .q-num{display:inline-block;padding:3px 12px;border-radius:14px;font-size:0.75em;font-weight:700;background:#fef5f7;color:var(--accent);margin-bottom:8px}
+.q-card .q-text{font-weight:600;font-size:0.98em;margin-bottom:14px;line-height:1.5}
 
-/* Likert scale */
-.likert{display:flex;justify-content:space-between;align-items:center;gap:2px}
-.likert label{flex:1;text-align:center;cursor:pointer;padding:8px 2px;border-radius:8px;transition:all 0.2s;font-size:0.82em;color:var(--text2);border:1px solid transparent;user-select:none}
-.likert label:hover{background:#fdf7f9;border-color:#f5d8e1}
+.likert{display:flex;justify-content:space-between;align-items:stretch;gap:4px}
+.likert label{flex:1;text-align:center;cursor:pointer;padding:10px 4px;border-radius:8px;transition:all 0.2s;font-size:0.8em;color:var(--text2);border:1px solid transparent;user-select:none;display:flex;align-items:center;justify-content:center}
+.likert label:hover{background:#fdf7f9;border-color:#f0d0db}
 .likert input{display:none}
-.likert input:checked+label{background:var(--accent);color:#fff;font-weight:700;border-color:var(--accent);box-shadow:0 2px 8px rgba(183,71,110,0.25)}
-.likert-label-row{display:flex;justify-content:space-between;font-size:0.72em;color:var(--muted);margin-bottom:6px;padding:0 2px}
+.likert input:checked+label{background:var(--accent);color:#fff;font-weight:700;border-color:var(--accent);box-shadow:0 2px 10px rgba(183,71,110,0.25);transform:scale(1.03)}
 
-/* Button */
-.btn-row{display:flex;gap:12px;justify-content:center;margin:28px 0}
-.btn{padding:12px 40px;border-radius:8px;font-size:1em;font-weight:600;cursor:pointer;border:none;transition:all 0.2s;font-family:var(--font)}
-.btn-primary{background:var(--accent);color:#fff}
-.btn-primary:hover{background:#9e3c5d;transform:translateY(-1px);box-shadow:0 4px 16px rgba(183,71,110,0.3)}
-.btn-secondary{background:#fff;color:var(--text2);border:1px solid var(--border)}
-.btn-secondary:hover{background:#f8f8f8}
+.btn-row{display:flex;gap:12px;justify-content:center;margin:30px 0}
+.btn{padding:13px 44px;border-radius:10px;font-size:1em;font-weight:700;cursor:pointer;border:none;transition:all 0.2s;font-family:var(--font);letter-spacing:1px}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#9e3c5d);color:#fff}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(183,71,110,0.35)}
+.btn-ghost{background:#fff;color:var(--text2);border:1px solid var(--border)}
+.btn-ghost:hover{background:#f8f8f8}
 
-/* Result */
 .result-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);z-index:999;justify-content:center;align-items:flex-start;overflow-y:auto;padding:40px 0}
 .result-overlay.show{display:flex}
-.result-card{background:#fff;border-radius:var(--radius);padding:36px 28px;max-width:520px;width:92%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,0.25);position:relative;margin:auto}
-.result-card .type-badge{display:inline-block;font-size:0.75em;letter-spacing:2px;padding:5px 16px;border-radius:16px;font-weight:700;margin-bottom:8px}
-.result-card .type-code{font-size:2.4em;font-weight:800;letter-spacing:4px;margin:8px 0;background:linear-gradient(135deg,#b7476e,#5b3a6e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.result-card .type-name{font-size:1.4em;font-weight:700;margin-bottom:4px;color:var(--text)}
-.result-card .type-desc{color:var(--text2);font-size:0.9em;line-height:1.8;margin:16px 0}
-.result-card .type-section{text-align:left;margin:16px 0}
-.result-card .type-section h4{font-size:0.85em;color:var(--purple);margin-bottom:6px;border-bottom:1px solid #f0ece8;padding-bottom:4px}
-.result-card .type-section .tag-row{display:flex;flex-wrap:wrap;gap:6px}
-.result-card .type-section .tag-row span{padding:3px 10px;border-radius:12px;font-size:0.8em;background:#fef5f7;color:#b7476e}
-.result-card .dims-display{display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:left;margin:16px 0;font-size:0.82em}
-.result-card .dims-display .dim-item{padding:8px 12px;background:#fdf8fa;border-radius:6px}
-.result-card .dim-item strong{color:var(--purple)}
+.result-card{background:#fff;border-radius:var(--radius);padding:36px 28px;max-width:540px;width:94%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,0.25);position:relative;margin:auto}
+.result-card .type-badge{display:inline-block;font-size:0.7em;letter-spacing:2px;padding:4px 14px;border-radius:14px;font-weight:700;margin-bottom:10px}
+.result-card .type-code{font-size:2.8em;font-weight:900;letter-spacing:5px;margin:6px 0;background:linear-gradient(135deg,#b7476e,#5b3a6e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.result-card .type-name{font-size:1.5em;font-weight:800;margin-bottom:2px}
+.result-card .type-persona{font-size:0.9em;color:var(--accent);font-style:italic;margin-bottom:14px}
+.result-card .type-desc{color:var(--text2);font-size:0.9em;line-height:1.8;margin:14px 0;text-align:left}
 
-/* Error modal */
-.err-toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#c44a5e;color:#fff;padding:12px 24px;border-radius:8px;font-size:0.9em;z-index:999;display:none;box-shadow:0 8px 24px rgba(196,74,94,0.3)}
-.err-toast.show{display:block;animation:fadeInOut 2.5s forwards}
-@keyframes fadeInOut{0%{opacity:0;top:0}15%{opacity:1;top:20px}75%{opacity:1;top:20px}100%{opacity:0;top:0}}
+/* Radar chart */
+.radar-wrap{display:flex;justify-content:center;margin:16px 0}
+.radar-wrap svg{max-width:260px}
 
-/* Share btn */
+/* Dimension bars */
+.dim-bars{text-align:left;margin:16px 0}
+.dim-bar{margin:8px 0;display:flex;align-items:center;gap:8px;font-size:0.82em}
+.dim-bar .dim-label{width:80px;text-align:right;font-weight:600;flex-shrink:0}
+.dim-bar .dim-track{flex:1;height:8px;background:#eee;border-radius:4px;overflow:hidden}
+.dim-bar .dim-fill{height:100%;border-radius:4px;transition:width 0.6s}
+.dim-bar .dim-val{width:36px;font-weight:700;font-size:0.85em;text-align:left}
+
+/* Info grid */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;text-align:left;margin:14px 0}
+.info-item{padding:10px 12px;background:#fdf8fa;border-radius:8px;font-size:0.82em}
+.info-item .info-label{font-size:0.75em;color:var(--muted);margin-bottom:2px}
+.info-item .info-val{font-weight:600;color:var(--text)}
+
+.tag-row{display:flex;flex-wrap:wrap;gap:5px;margin:6px 0}
+.tag-row span{padding:3px 10px;border-radius:12px;font-size:0.78em;background:#fef5f7;color:#b7476e}
+
 .share-row{display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap}
-.share-btn{padding:8px 18px;border-radius:20px;font-size:0.85em;font-weight:600;cursor:pointer;border:none;font-family:var(--font);transition:all 0.2s}
+.share-btn{padding:9px 20px;border-radius:20px;font-size:0.85em;font-weight:600;cursor:pointer;border:none;font-family:var(--font);transition:all 0.2s}
 .share-btn.copy{background:var(--purple);color:#fff}
 .share-btn.copy:hover{background:#4a2e5c}
 
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#c44a5e;color:#fff;padding:12px 24px;border-radius:8px;font-size:0.88em;z-index:999;display:none;box-shadow:0 8px 24px rgba(196,74,94,0.3)}
+.toast.show{display:block;animation:fadeInOut 2.5s forwards}
+@keyframes fadeInOut{0%{opacity:0;top:0}15%{opacity:1;top:20px}75%{opacity:1;top:20px}100%{opacity:0;top:0}}
+
 @media(max-width:500px){
-  .hero h1{font-size:1.3em}
-  .likert{flex-wrap:wrap}
-  .likert label{flex:0 0 18%;font-size:0.72em;padding:6px 1px}
-  .result-card{padding:24px 16px}
-  .result-card .type-code{font-size:1.8em}
+  .hero h1{font-size:1.4em}
+  .likert label{font-size:0.7em;padding:8px 2px}
+  .result-card{padding:24px 14px}
+  .result-card .type-code{font-size:2em;letter-spacing:3px}
+  .info-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
-<div class="err-toast" id="errToast"></div>
+<div class="toast" id="toast"></div>
 <div class="result-overlay" id="resultOverlay"><div class="result-card" id="resultCard"></div></div>
 
 <header class="hero">
   <div class="hero-inner">
-    <div class="tag">SHE · CAREER COMPASS</div>
-    <h1>「她势·<em>职向力</em>」<br>职业人格测试</h1>
-    <p class="sub">4个维度 · 16种类型 · 发现属于你的职业DNA<br>基于当代女大学生创业就业趋势研究</p>
+    <div class="tag">Z 世 代 女 大 学 生  ·  职 业 人 格 图 鉴</div>
+    <h1>「职人图鉴·<em>她</em>」</h1>
+    <p class="sub">25题解锁你的职场隐藏人设 · 4大维度 · 16种人格<br>基于《当代女大学生创业就业趋势分析》课题</p>
   </div>
 </header>
 
 <div class="progress-wrap">
   <div class="progress-inner">
-    <span style="font-size:0.85em;color:var(--text2)">完成进度</span>
+    <span style="font-size:0.85em;color:var(--text2)">🔍 人格扫描中</span>
     <div class="progress-bar-outer"><div class="progress-bar-inner" id="progressBar" style="width:0%"></div></div>
-    <span class="progress-text" id="progressText">0/16</span>
+    <span class="progress-text" id="progressText">0/25</span>
   </div>
 </div>
 
 <div class="container">
 <div class="intro-card">
-  <h2>🔮 发现你的「她势」职业人格</h2>
-  <p>以下16道题没有对错，凭第一反应作答即可。<br>测试将从四个维度描摹你的职业DNA画像，耗时约4分钟。</p>
+  <h2>🔮 每个人都有一个"职场隐藏人设"</h2>
+  <p>以下25道题没有标准答案，凭第一反应作答。<br>我们将从四个维度扫描你的职业人格DNA，耗时约4分钟。</p>
   <div class="dims">
-    <span class="dim-tag d1">🏛 稳锚 vs 扬帆</span>
-    <span class="dim-tag d2">📋 蓝图 vs 即兴</span>
-    <span class="dim-tag d3">🛡 堡垒 vs 旷野</span>
-    <span class="dim-tag d4">🤝 共情 vs 解码</span>
+    <span class="dim-tag d1">🏛 安全感锚点</span>
+    <span class="dim-tag d2">📋 规划频道</span>
+    <span class="dim-tag d3">🛡 风险温度</span>
+    <span class="dim-tag d4">💻 能量来源</span>
   </div>
 </div>
 
 <form id="testForm" autocomplete="off">
 
-<!-- Q1 稳锚/扬帆 -->
-<div class="q-card"><div class="q-num">01</div><div class="q-text">"编制和铁饭碗比高薪更让我安心。"</div>
-<div class="likert">
-  <input type="radio" name="q1" id="q1_1" value="1"><label for="q1_1">完全<br>不同意</label>
-  <input type="radio" name="q1" id="q1_2" value="2"><label for="q1_2">不太<br>同意</label>
-  <input type="radio" name="q1" id="q1_3" value="3"><label for="q1_3">中立</label>
-  <input type="radio" name="q1" id="q1_4" value="4"><label for="q1_4">比较<br>同意</label>
-  <input type="radio" name="q1" id="q1_5" value="5"><label for="q1_5">完全<br>同意</label>
-</div></div>
+<!-- DIMENSION 1: 稳(Steady) vs 闯(Venture) — Q1,5,9,13,17,21 -->
+<div class="q-card"><div class="q-num">01</div>
+<div class="q-text">"编制和铁饭碗，比高薪更让我安心。"</div>
+<div class="likert"><input type="radio" name="q1" id="q1_1" value="1"><label for="q1_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q1" id="q1_2" value="2"><label for="q1_2">🤔 不太像我</label><input type="radio" name="q1" id="q1_3" value="3"><label for="q1_3">🤷 一半一半</label><input type="radio" name="q1" id="q1_4" value="4"><label for="q1_4">👌 有点像我</label><input type="radio" name="q1" id="q1_5" value="5"><label for="q1_5">💯 完全是我</label></div></div>
 
-<!-- Q2 蓝图/即兴 -->
-<div class="q-card"><div class="q-num">02</div><div class="q-text">"计划赶不上变化，走一步看一步也挺好。"</div>
-<div class="likert">
-  <input type="radio" name="q2" id="q2_1" value="5"><label for="q2_1">完全<br>不同意</label>
-  <input type="radio" name="q2" id="q2_2" value="4"><label for="q2_2">不太<br>同意</label>
-  <input type="radio" name="q2" id="q2_3" value="3"><label for="q2_3">中立</label>
-  <input type="radio" name="q2" id="q2_4" value="2"><label for="q2_4">比较<br>同意</label>
-  <input type="radio" name="q2" id="q2_5" value="1"><label for="q2_5">完全<br>同意</label>
-</div></div>
+<div class="q-card"><div class="q-num">02</div>
+<div class="q-text">"计划赶不上变化，走一步看一步也挺好。"</div>
+<div class="likert"><input type="radio" name="q2" id="q2_1" value="5"><label for="q2_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q2" id="q2_2" value="4"><label for="q2_2">🤔 不太像我</label><input type="radio" name="q2" id="q2_3" value="3"><label for="q2_3">🤷 一半一半</label><input type="radio" name="q2" id="q2_4" value="2"><label for="q2_4">👌 有点像我</label><input type="radio" name="q2" id="q2_5" value="1"><label for="q2_5">💯 完全是我</label></div></div>
 
-<!-- Q3 堡垒/旷野 -->
-<div class="q-card"><div class="q-num">03</div><div class="q-text">"没有七成把握的事情，我不会去做。"</div>
-<div class="likert">
-  <input type="radio" name="q3" id="q3_1" value="1"><label for="q3_1">完全<br>不同意</label>
-  <input type="radio" name="q3" id="q3_2" value="2"><label for="q3_2">不太<br>同意</label>
-  <input type="radio" name="q3" id="q3_3" value="3"><label for="q3_3">中立</label>
-  <input type="radio" name="q3" id="q3_4" value="4"><label for="q3_4">比较<br>同意</label>
-  <input type="radio" name="q3" id="q3_5" value="5"><label for="q3_5">完全<br>同意</label>
-</div></div>
+<div class="q-card"><div class="q-num">03</div>
+<div class="q-text">"没有七成把握的事情，我不会去做。"</div>
+<div class="likert"><input type="radio" name="q3" id="q3_1" value="1"><label for="q3_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q3" id="q3_2" value="2"><label for="q3_2">🤔 不太像我</label><input type="radio" name="q3" id="q3_3" value="3"><label for="q3_3">🤷 一半一半</label><input type="radio" name="q3" id="q3_4" value="4"><label for="q3_4">👌 有点像我</label><input type="radio" name="q3" id="q3_5" value="5"><label for="q3_5">💯 完全是我</label></div></div>
 
-<!-- Q4 共情/解码 -->
-<div class="q-card"><div class="q-num">04</div><div class="q-text">"和形形色色的人打交道，让工作更有意义。"</div>
-<div class="likert">
-  <input type="radio" name="q4" id="q4_1" value="1"><label for="q4_1">完全<br>不同意</label>
-  <input type="radio" name="q4" id="q4_2" value="2"><label for="q4_2">不太<br>同意</label>
-  <input type="radio" name="q4" id="q4_3" value="3"><label for="q4_3">中立</label>
-  <input type="radio" name="q4" id="q4_4" value="4"><label for="q4_4">比较<br>同意</label>
-  <input type="radio" name="q4" id="q4_5" value="5"><label for="q4_5">完全<br>同意</label>
-</div></div>
+<div class="q-card"><div class="q-num">04</div>
+<div class="q-text">"和形形色色的人打交道，让工作充满意义。"</div>
+<div class="likert"><input type="radio" name="q4" id="q4_1" value="1"><label for="q4_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q4" id="q4_2" value="2"><label for="q4_2">🤔 不太像我</label><input type="radio" name="q4" id="q4_3" value="3"><label for="q4_3">🤷 一半一半</label><input type="radio" name="q4" id="q4_4" value="4"><label for="q4_4">👌 有点像我</label><input type="radio" name="q4" id="q4_5" value="5"><label for="q4_5">💯 完全是我</label></div></div>
 
-<!-- Q5 稳锚/扬帆 (reverse) -->
-<div class="q-card"><div class="q-num">05</div><div class="q-text">"自由职业/灵活就业的生活方式非常吸引我。"</div>
-<div class="likert">
-  <input type="radio" name="q5" id="q5_1" value="5"><label for="q5_1">完全<br>不同意</label>
-  <input type="radio" name="q5" id="q5_2" value="4"><label for="q5_2">不太<br>同意</label>
-  <input type="radio" name="q5" id="q5_3" value="3"><label for="q5_3">中立</label>
-  <input type="radio" name="q5" id="q5_4" value="2"><label for="q5_4">比较<br>同意</label>
-  <input type="radio" name="q5" id="q5_5" value="1"><label for="q5_5">完全<br>同意</label>
-</div></div>
+<div class="q-card"><div class="q-num">05</div>
+<div class="q-text">"我宁可创业失败，也不愿一辈子困在体制里。"</div>
+<div class="likert"><input type="radio" name="q5" id="q5_1" value="5"><label for="q5_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q5" id="q5_2" value="4"><label for="q5_2">🤔 不太像我</label><input type="radio" name="q5" id="q5_3" value="3"><label for="q5_3">🤷 一半一半</label><input type="radio" name="q5" id="q5_4" value="2"><label for="q5_4">👌 有点像我</label><input type="radio" name="q5" id="q5_5" value="1"><label for="q5_5">💯 完全是我</label></div></div>
 
-<!-- Q6 蓝图/即兴 -->
-<div class="q-card"><div class="q-num">06</div><div class="q-text">"我从大一开始就在为毕业后的出路做准备。"</div>
-<div class="likert">
-  <input type="radio" name="q6" id="q6_1" value="1"><label for="q6_1">完全<br>不同意</label>
-  <input type="radio" name="q6" id="q6_2" value="2"><label for="q6_2">不太<br>同意</label>
-  <input type="radio" name="q6" id="q6_3" value="3"><label for="q6_3">中立</label>
-  <input type="radio" name="q6" id="q6_4" value="4"><label for="q6_4">比较<br>同意</label>
-  <input type="radio" name="q6" id="q6_5" value="5"><label for="q6_5">完全<br>同意</label>
-</div></div>
+<div class="q-card"><div class="q-num">06</div>
+<div class="q-text">"我从大一开始就在为毕业出路做准备。"</div>
+<div class="likert"><input type="radio" name="q6" id="q6_1" value="1"><label for="q6_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q6" id="q6_2" value="2"><label for="q6_2">🤔 不太像我</label><input type="radio" name="q6" id="q6_3" value="3"><label for="q6_3">🤷 一半一半</label><input type="radio" name="q6" id="q6_4" value="4"><label for="q6_4">👌 有点像我</label><input type="radio" name="q6" id="q6_5" value="5"><label for="q6_5">💯 完全是我</label></div></div>
 
-<!-- Q7 堡垒/旷野 (reverse) -->
-<div class="q-card"><div class="q-num">07</div><div class="q-text">"即使月薪低于期望，只要成长空间大我就去。"</div>
-<div class="likert">
-  <input type="radio" name="q7" id="q7_1" value="5"><label for="q7_1">完全<br>不同意</label>
-  <input type="radio" name="q7" id="q7_2" value="4"><label for="q7_2">不太<br>同意</label>
-  <input type="radio" name="q7" id="q7_3" value="3"><label for="q7_3">中立</label>
-  <input type="radio" name="q7" id="q7_4" value="2"><label for="q7_4">比较<br>同意</label>
-  <input type="radio" name="q7" id="q7_5" value="1"><label for="q7_5">完全<br>同意</label>
-</div></div>
+<div class="q-card"><div class="q-num">07</div>
+<div class="q-text">"薪资低于预期但成长空间大的工作，我愿意去。"</div>
+<div class="likert"><input type="radio" name="q7" id="q7_1" value="5"><label for="q7_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q7" id="q7_2" value="4"><label for="q7_2">🤔 不太像我</label><input type="radio" name="q7" id="q7_3" value="3"><label for="q7_3">🤷 一半一半</label><input type="radio" name="q7" id="q7_4" value="2"><label for="q7_4">👌 有点像我</label><input type="radio" name="q7" id="q7_5" value="1"><label for="q7_5">💯 完全是我</label></div></div>
 
-<!-- Q8 共情/解码 (reverse) -->
-<div class="q-card"><div class="q-num">08</div><div class="q-text">"比起和人打交道，我更享受和代码/数据/系统相处。"</div>
-<div class="likert">
-  <input type="radio" name="q8" id="q8_1" value="5"><label for="q8_1">完全<br>不同意</label>
-  <input type="radio" name="q8" id="q8_2" value="4"><label for="q8_2">不太<br>同意</label>
-  <input type="radio" name="q8" id="q8_3" value="3"><label for="q8_3">中立</label>
-  <input type="radio" name="q8" id="q8_4" value="2"><label for="q8_4">比较<br>同意</label>
-  <input type="radio" name="q8" id="q8_5" value="1"><label for="q8_5">完全<br>同意</label>
-</div></div>
+<div class="q-card"><div class="q-num">08</div>
+<div class="q-text">"比起跟人社交，我更享受跟代码/数据/系统相处。"</div>
+<div class="likert"><input type="radio" name="q8" id="q8_1" value="5"><label for="q8_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q8" id="q8_2" value="4"><label for="q8_2">🤔 不太像我</label><input type="radio" name="q8" id="q8_3" value="3"><label for="q8_3">🤷 一半一半</label><input type="radio" name="q8" id="q8_4" value="2"><label for="q8_4">👌 有点像我</label><input type="radio" name="q8" id="q8_5" value="1"><label for="q8_5">💯 完全是我</label></div></div>
 
-<!-- Q9 稳锚/扬帆 -->
-<div class="q-card"><div class="q-num">09</div><div class="q-text">"考公/考编/国企是我的优先选择。"</div>
-<div class="likert">
-  <input type="radio" name="q9" id="q9_1" value="1"><label for="q9_1">完全<br>不同意</label>
-  <input type="radio" name="q9" id="q9_2" value="2"><label for="q9_2">不太<br>同意</label>
-  <input type="radio" name="q9" id="q9_3" value="3"><label for="q9_3">中立</label>
-  <input type="radio" name="q9" id="q9_4" value="4"><label for="q9_4">比较<br>同意</label>
-  <input type="radio" name="q9" id="q9_5" value="5"><label for="q9_5">完全<br>同意</label>
-</div></div>
+<div class="q-card"><div class="q-num">09</div>
+<div class="q-text">"自由职业/灵活就业的生活方式，想想就兴奋。"</div>
+<div class="likert"><input type="radio" name="q9" id="q9_1" value="5"><label for="q9_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q9" id="q9_2" value="4"><label for="q9_2">🤔 不太像我</label><input type="radio" name="q9" id="q9_3" value="3"><label for="q9_3">🤷 一半一半</label><input type="radio" name="q9" id="q9_4" value="2"><label for="q9_4">👌 有点像我</label><input type="radio" name="q9" id="q9_5" value="1"><label for="q9_5">💯 完全是我</label></div></div>
 
-<!-- Q10 蓝图/即兴 (reverse) -->
-<div class="q-card"><div class="q-num">10</div><div class="q-text">"gap year / 慢就业是探索自我的好方式。"</div>
-<div class="likert">
-  <input type="radio" name="q10" id="q10_1" value="5"><label for="q10_1">完全<br>不同意</label>
-  <input type="radio" name="q10" id="q10_2" value="4"><label for="q10_2">不太<br>同意</label>
-  <input type="radio" name="q10" id="q10_3" value="3"><label for="q10_3">中立</label>
-  <input type="radio" name="q10" id="q10_4" value="2"><label for="q10_4">比较<br>同意</label>
-  <input type="radio" name="q10" id="q10_5" value="1"><label for="q10_5">完全<br>同意</label>
-</div></div>
+<div class="q-card"><div class="q-num">10</div>
+<div class="q-text">"gap year / 慢就业是探索自我的好方式，不是浪费。"</div>
+<div class="likert"><input type="radio" name="q10" id="q10_1" value="5"><label for="q10_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q10" id="q10_2" value="4"><label for="q10_2">🤔 不太像我</label><input type="radio" name="q10" id="q10_3" value="3"><label for="q10_3">🤷 一半一半</label><input type="radio" name="q10" id="q10_4" value="2"><label for="q10_4">👌 有点像我</label><input type="radio" name="q10" id="q10_5" value="1"><label for="q10_5">💯 完全是我</label></div></div>
 
-<!-- Q11 堡垒/旷野 -->
-<div class="q-card"><div class="q-num">11</div><div class="q-text">"创业风险太大，不适合我。"</div>
-<div class="likert">
-  <input type="radio" name="q11" id="q11_1" value="1"><label for="q11_1">完全<br>不同意</label>
-  <input type="radio" name="q11" id="q11_2" value="2"><label for="q11_2">不太<br>同意</label>
-  <input type="radio" name="q11" id="q11_3" value="3"><label for="q11_3">中立</label>
-  <input type="radio" name="q11" id="q11_4" value="4"><label for="q11_4">比较<br>同意</label>
-  <input type="radio" name="q11" id="q11_5" value="5"><label for="q11_5">完全<br>同意</label>
-</div></div>
+<div class="q-card"><div class="q-num">11</div>
+<div class="q-text">"创业风险太大了，我不想赌。"</div>
+<div class="likert"><input type="radio" name="q11" id="q11_1" value="1"><label for="q11_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q11" id="q11_2" value="2"><label for="q11_2">🤔 不太像我</label><input type="radio" name="q11" id="q11_3" value="3"><label for="q11_3">🤷 一半一半</label><input type="radio" name="q11" id="q11_4" value="4"><label for="q11_4">👌 有点像我</label><input type="radio" name="q11" id="q11_5" value="5"><label for="q11_5">💯 完全是我</label></div></div>
 
-<!-- Q12 共情/解码 -->
-<div class="q-card"><div class="q-num">12</div><div class="q-text">"我理想的职业是能直接帮助到他人的。"</div>
-<div class="likert">
-  <input type="radio" name="q12" id="q12_1" value="1"><label for="q12_1">完全<br>不同意</label>
-  <input type="radio" name="q12" id="q12_2" value="2"><label for="q12_2">不太<br>同意</label>
-  <input type="radio" name="q12" id="q12_3" value="3"><label for="q12_3">中立</label>
-  <input type="radio" name="q12" id="q12_4" value="4"><label for="q12_4">比较<br>同意</label>
-  <input type="radio" name="q12" id="q12_5" value="5"><label for="q12_5">完全<br>同意</label>
-</div></div>
+<div class="q-card"><div class="q-num">12</div>
+<div class="q-text">"我理想的职业是能直接帮助到具体的人的。"</div>
+<div class="likert"><input type="radio" name="q12" id="q12_1" value="1"><label for="q12_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q12" id="q12_2" value="2"><label for="q12_2">🤔 不太像我</label><input type="radio" name="q12" id="q12_3" value="3"><label for="q12_3">🤷 一半一半</label><input type="radio" name="q12" id="q12_4" value="4"><label for="q12_4">👌 有点像我</label><input type="radio" name="q12" id="q12_5" value="5"><label for="q12_5">💯 完全是我</label></div></div>
 
-<!-- Q13 稳锚/扬帆 (reverse) -->
-<div class="q-card"><div class="q-num">13</div><div class="q-text">"我宁可创业失败，也不愿在体制内一眼望到头。"</div>
-<div class="likert">
-  <input type="radio" name="q13" id="q13_1" value="5"><label for="q13_1">完全<br>不同意</label>
-  <input type="radio" name="q13" id="q13_2" value="4"><label for="q13_2">不太<br>同意</label>
-  <input type="radio" name="q13" id="q13_3" value="3"><label for="q13_3">中立</label>
-  <input type="radio" name="q13" id="q13_4" value="2"><label for="q13_4">比较<br>同意</label>
-  <input type="radio" name="q13" id="q13_5" value="1"><label for="q13_5">完全<br>同意</label>
-</div></div>
+<div class="q-card"><div class="q-num">13</div>
+<div class="q-text">"考公/考编/国企就是我的第一选择。"</div>
+<div class="likert"><input type="radio" name="q13" id="q13_1" value="1"><label for="q13_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q13" id="q13_2" value="2"><label for="q13_2">🤔 不太像我</label><input type="radio" name="q13" id="q13_3" value="3"><label for="q13_3">🤷 一半一半</label><input type="radio" name="q13" id="q13_4" value="4"><label for="q13_4">👌 有点像我</label><input type="radio" name="q13" id="q13_5" value="5"><label for="q13_5">💯 完全是我</label></div></div>
 
-<!-- Q14 蓝图/即兴 -->
-<div class="q-card"><div class="q-num">14</div><div class="q-text">"没有明确规划的人生让我感到焦虑。"</div>
-<div class="likert">
-  <input type="radio" name="q14" id="q14_1" value="1"><label for="q14_1">完全<br>不同意</label>
-  <input type="radio" name="q14" id="q14_2" value="2"><label for="q14_2">不太<br>同意</label>
-  <input type="radio" name="q14" id="q14_3" value="3"><label for="q14_3">中立</label>
-  <input type="radio" name="q14" id="q14_4" value="4"><label for="q14_4">比较<br>同意</label>
-  <input type="radio" name="q14" id="q14_5" value="5"><label for="q14_5">完全<br>同意</label>
-</div></div>
+<div class="q-card"><div class="q-num">14</div>
+<div class="q-text">"没有明确规划的人生，让我感到焦虑。"</div>
+<div class="likert"><input type="radio" name="q14" id="q14_1" value="1"><label for="q14_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q14" id="q14_2" value="2"><label for="q14_2">🤔 不太像我</label><input type="radio" name="q14" id="q14_3" value="3"><label for="q14_3">🤷 一半一半</label><input type="radio" name="q14" id="q14_4" value="4"><label for="q14_4">👌 有点像我</label><input type="radio" name="q14" id="q14_5" value="5"><label for="q14_5">💯 完全是我</label></div></div>
 
-<!-- Q15 堡垒/旷野 (reverse) -->
-<div class="q-card"><div class="q-num">15</div><div class="q-text">"我对'团播'这类新兴业态持开放态度，有机会会尝试。"</div>
-<div class="likert">
-  <input type="radio" name="q15" id="q15_1" value="5"><label for="q15_1">完全<br>不同意</label>
-  <input type="radio" name="q15" id="q15_2" value="4"><label for="q15_2">不太<br>同意</label>
-  <input type="radio" name="q15" id="q15_3" value="3"><label for="q15_3">中立</label>
-  <input type="radio" name="q15" id="q15_4" value="2"><label for="q15_4">比较<br>同意</label>
-  <input type="radio" name="q15" id="q15_5" value="1"><label for="q15_5">完全<br>同意</label>
-</div></div>
+<div class="q-card"><div class="q-num">15</div>
+<div class="q-text">"我对'团播'之类的新业态持开放态度，有机会就会试试。"</div>
+<div class="likert"><input type="radio" name="q15" id="q15_1" value="5"><label for="q15_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q15" id="q15_2" value="4"><label for="q15_2">🤔 不太像我</label><input type="radio" name="q15" id="q15_3" value="3"><label for="q15_3">🤷 一半一半</label><input type="radio" name="q15" id="q15_4" value="2"><label for="q15_4">👌 有点像我</label><input type="radio" name="q15" id="q15_5" value="1"><label for="q15_5">💯 完全是我</label></div></div>
 
-<!-- Q16 共情/解码 (reverse) -->
-<div class="q-card"><div class="q-num">16</div><div class="q-text">"AI和技术工具是我职业发展的核心武器。"</div>
-<div class="likert">
-  <input type="radio" name="q16" id="q16_1" value="5"><label for="q16_1">完全<br>不同意</label>
-  <input type="radio" name="q16" id="q16_2" value="4"><label for="q16_2">不太<br>同意</label>
-  <input type="radio" name="q16" id="q16_3" value="3"><label for="q16_3">中立</label>
-  <input type="radio" name="q16" id="q16_4" value="2"><label for="q16_4">比较<br>同意</label>
-  <input type="radio" name="q16" id="q16_5" value="1"><label for="q16_5">完全<br>同意</label>
-</div></div>
+<div class="q-card"><div class="q-num">16</div>
+<div class="q-text">"AI和技术工具，是我职业发展的核心武器。"</div>
+<div class="likert"><input type="radio" name="q16" id="q16_1" value="5"><label for="q16_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q16" id="q16_2" value="4"><label for="q16_2">🤔 不太像我</label><input type="radio" name="q16" id="q16_3" value="3"><label for="q16_3">🤷 一半一半</label><input type="radio" name="q16" id="q16_4" value="2"><label for="q16_4">👌 有点像我</label><input type="radio" name="q16" id="q16_5" value="1"><label for="q16_5">💯 完全是我</label></div></div>
+
+<div class="q-card"><div class="q-num">17</div>
+<div class="q-text">"一份稳定的工作，比一份有趣的工作更重要。"</div>
+<div class="likert"><input type="radio" name="q17" id="q17_1" value="1"><label for="q17_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q17" id="q17_2" value="2"><label for="q17_2">🤔 不太像我</label><input type="radio" name="q17" id="q17_3" value="3"><label for="q17_3">🤷 一半一半</label><input type="radio" name="q17" id="q17_4" value="4"><label for="q17_4">👌 有点像我</label><input type="radio" name="q17" id="q17_5" value="5"><label for="q17_5">💯 完全是我</label></div></div>
+
+<div class="q-card"><div class="q-num">18</div>
+<div class="q-text">"我喜欢在deadline前爆发的节奏，效率反而更高。"</div>
+<div class="likert"><input type="radio" name="q18" id="q18_1" value="5"><label for="q18_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q18" id="q18_2" value="4"><label for="q18_2">🤔 不太像我</label><input type="radio" name="q18" id="q18_3" value="3"><label for="q18_3">🤷 一半一半</label><input type="radio" name="q18" id="q18_4" value="2"><label for="q18_4">👌 有点像我</label><input type="radio" name="q18" id="q18_5" value="1"><label for="q18_5">💯 完全是我</label></div></div>
+
+<div class="q-card"><div class="q-num">19</div>
+<div class="q-text">"即使三十岁了还没有稳定下来，我也不觉得有问题。"</div>
+<div class="likert"><input type="radio" name="q19" id="q19_1" value="5"><label for="q19_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q19" id="q19_2" value="4"><label for="q19_2">🤔 不太像我</label><input type="radio" name="q19" id="q19_3" value="3"><label for="q19_3">🤷 一半一半</label><input type="radio" name="q19" id="q19_4" value="2"><label for="q19_4">👌 有点像我</label><input type="radio" name="q19" id="q19_5" value="1"><label for="q19_5">💯 完全是我</label></div></div>
+
+<div class="q-card"><div class="q-num">20</div>
+<div class="q-text">"教育、医疗、公益……这些能温暖他人的领域天然吸引我。"</div>
+<div class="likert"><input type="radio" name="q20" id="q20_1" value="1"><label for="q20_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q20" id="q20_2" value="2"><label for="q20_2">🤔 不太像我</label><input type="radio" name="q20" id="q20_3" value="3"><label for="q20_3">🤷 一半一半</label><input type="radio" name="q20" id="q20_4" value="4"><label for="q20_4">👌 有点像我</label><input type="radio" name="q20" id="q20_5" value="5"><label for="q20_5">💯 完全是我</label></div></div>
+
+<div class="q-card"><div class="q-num">21</div>
+<div class="q-text">"我不想只做一个'安稳'的人，我想做一个'有故事'的人。"</div>
+<div class="likert"><input type="radio" name="q21" id="q21_1" value="5"><label for="q21_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q21" id="q21_2" value="4"><label for="q21_2">🤔 不太像我</label><input type="radio" name="q21" id="q21_3" value="3"><label for="q21_3">🤷 一半一半</label><input type="radio" name="q21" id="q21_4" value="2"><label for="q21_4">👌 有点像我</label><input type="radio" name="q21" id="q21_5" value="1"><label for="q21_5">💯 完全是我</label></div></div>
+
+<div class="q-card"><div class="q-num">22</div>
+<div class="q-text">"考证、攒实习、刷简历——每一步都要踩准节点。"</div>
+<div class="likert"><input type="radio" name="q22" id="q22_1" value="1"><label for="q22_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q22" id="q22_2" value="2"><label for="q22_2">🤔 不太像我</label><input type="radio" name="q22" id="q22_3" value="3"><label for="q22_3">🤷 一半一半</label><input type="radio" name="q22" id="q22_4" value="4"><label for="q22_4">👌 有点像我</label><input type="radio" name="q22" id="q22_5" value="5"><label for="q22_5">💯 完全是我</label></div></div>
+
+<div class="q-card"><div class="q-num">23</div>
+<div class="q-text">"失败不可怕，可怕的是连尝试都不敢。"</div>
+<div class="likert"><input type="radio" name="q23" id="q23_1" value="5"><label for="q23_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q23" id="q23_2" value="4"><label for="q23_2">🤔 不太像我</label><input type="radio" name="q23" id="q23_3" value="3"><label for="q23_3">🤷 一半一半</label><input type="radio" name="q23" id="q23_4" value="2"><label for="q23_4">👌 有点像我</label><input type="radio" name="q23" id="q23_5" value="1"><label for="q23_5">💯 完全是我</label></div></div>
+
+<div class="q-card"><div class="q-num">24</div>
+<div class="q-text">"技术改变世界，比人情往来更让我有成就感。"</div>
+<div class="likert"><input type="radio" name="q24" id="q24_1" value="5"><label for="q24_1">🙅‍♀️ 完全不像我</label><input type="radio" name="q24" id="q24_2" value="4"><label for="q24_2">🤔 不太像我</label><input type="radio" name="q24" id="q24_3" value="3"><label for="q24_3">🤷 一半一半</label><input type="radio" name="q24" id="q24_4" value="2"><label for="q24_4">👌 有点像我</label><input type="radio" name="q24" id="q24_5" value="1"><label for="q24_5">💯 完全是我</label></div></div>
+
+<div class="q-card"><div class="q-num">25</div>
+<div class="q-text" style="color:var(--accent)">🌟 最后一道：如果让你用一句话定义自己的职场态度，你会选？</div>
+<div class="likert" style="flex-wrap:wrap"><input type="radio" name="q25" id="q25_1" value="A"><label for="q25_1" style="flex:1 1 45%">🏛️ 稳中求进<br><small>安全第一，步步为营</small></label><input type="radio" name="q25" id="q25_2" value="B"><label for="q25_2" style="flex:1 1 45%">🚀 闯出一片天<br><small>不试怎么知道不行</small></label><input type="radio" name="q25" id="q25_3" value="C"><label for="q25_3" style="flex:1 1 45%">🎯 精准规划<br><small>每个选择都是算好的</small></label><input type="radio" name="q25" id="q25_4" value="D"><label for="q25_4" style="flex:1 1 45%">🌊 随遇而安<br><small>人生是旷野，不是轨道</small></label></div></div>
 
 <div class="btn-row">
-  <button type="button" class="btn btn-secondary" onclick="resetForm()">↺ 重新填写</button>
-  <button type="submit" class="btn btn-primary">🔮 查看我的职业人格</button>
+  <button type="button" class="btn btn-ghost" onclick="resetForm()">↺ 重填</button>
+  <button type="submit" class="btn btn-primary">🔮 解锁我的隐藏人设</button>
 </div>
 
 </form>
 </div>
 
 <script>
-// Update progress
+// Progress
 document.querySelectorAll('input[type="radio"]').forEach(r=>r.addEventListener('change',updateProgress));
 function updateProgress(){
-  let answered=0;
-  for(let i=1;i<=16;i++){if(document.querySelector('input[name="q'+i+'"]:checked'))answered++;}
-  document.getElementById('progressBar').style.width=Math.round(answered/16*100)+'%';
-  document.getElementById('progressText').textContent=answered+'/16';
+  let a=0;for(let i=1;i<=25;i++){if(document.querySelector('input[name="q'+i+'"]:checked'))a++;}
+  document.getElementById('progressBar').style.width=Math.round(a/25*100)+'%';
+  document.getElementById('progressText').textContent=a+'/25';
 }
+function resetForm(){document.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);updateProgress();window.scrollTo({top:0,behavior:'smooth'});}
 
-function resetForm(){
-  document.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);
-  updateProgress();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
+// Submit
 document.getElementById('testForm').addEventListener('submit',function(e){
   e.preventDefault();
-  const missing=[];
-  for(let i=1;i<=16;i++){if(!document.querySelector('input[name="q'+i+'"]:checked'))missing.push(i);}
-  if(missing.length>0){
-    const toast=document.getElementById('errToast');
-    toast.textContent='还有 '+missing.length+' 题未作答，请完成后再查看结果';
-    toast.classList.add('show');
-    setTimeout(()=>toast.classList.remove('show'),2500);
-    document.querySelector('.q-card:nth-of-type('+missing[0]+')').scrollIntoView({behavior:'smooth',block:'center'});
+  const m=[];for(let i=1;i<=25;i++){if(!document.querySelector('input[name="q'+i+'"]:checked'))m.push(i);}
+  if(m.length>0){
+    const t=document.getElementById('toast');t.textContent='还有 '+m.length+' 题没答完呢~ 完成后再解锁吧 🔍';t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),2500);
+    document.querySelectorAll('.q-card')[m[0]-1].scrollIntoView({behavior:'smooth',block:'center'});
     return;
   }
   showResult();
 });
 
-function getVal(n){return parseInt(document.querySelector('input[name="q'+n+'"]:checked').value);}
+function g(n){return parseInt(document.querySelector('input[name="q'+n+'"]:checked').value);}
+function gs(n){return document.querySelector('input[name="q'+n+'"]:checked').value;}
 
 function showResult(){
-  // Dimension scores (each 4 questions, max 20)
-  // D1 稳锚/扬帆: Q1, Q5(r), Q9, Q13(r) — higher = 稳锚(Anchor)
-  const d1 = getVal(1) + getVal(5) + getVal(9) + getVal(13);
-  // D2 蓝图/即兴: Q2(r), Q6, Q10(r), Q14 — higher = 蓝图(Blueprint)
-  const d2 = getVal(2) + getVal(6) + getVal(10) + getVal(14);
-  // D3 堡垒/旷野: Q3, Q7(r), Q11, Q15(r) — higher = 堡垒(Fortress)
-  const d3 = getVal(3) + getVal(7) + getVal(11) + getVal(15);
-  // D4 共情/解码: Q4, Q8(r), Q12, Q16(r) — higher = 共情(Empathy)
-  const d4 = getVal(4) + getVal(8) + getVal(12) + getVal(16);
+  // D1 稳(S)vs闯(V): Q1,Q5(r),Q9(r),Q13,Q17,Q21(r) — 6 questions
+  const d1=g(1)+g(5)+g(9)+g(13)+g(17)+g(21);
+  // D2 谋(P)vs随(F): Q2(r),Q6,Q10(r),Q14,Q18(r),Q22 — 6 questions
+  const d2=g(2)+g(6)+g(10)+g(14)+g(18)+g(22);
+  // D3 守(D)vs攻(A): Q3,Q7(r),Q11,Q15(r),Q19(r),Q23(r) — 6 questions
+  const d3=g(3)+g(7)+g(11)+g(15)+g(19)+g(23);
+  // D4 暖(W)vs酷(C): Q4,Q8(r),Q12,Q16(r),Q20,Q24(r) — 6 questions
+  const d4=g(4)+g(8)+g(12)+g(16)+g(20)+g(24);
 
-  const split=12; // split point
-  const A=d1>=split?'A':'S'; // Anchor vs Sail
-  const B=d2>=split?'B':'I'; // Blueprint vs Improv
-  const F=d3>=split?'F':'W'; // Fortress vs Wild
-  const E=d4>=split?'E':'D'; // Empathy vs Decode
+  const split=18; // 6*3=18, middle of 6-30 range
+  const S=d1>=split?'S':'V', P=d2>=split?'P':'F', D=d3>=split?'D':'A', W=d4>=split?'W':'C';
+  const q25=gs(25);
+  const code=S+P+D+W;
 
-  const code=A+B+F+E;
+  const dimNames={S:'稳',V:'闯',P:'谋',F:'随',D:'守',A:'攻',W:'暖',C:'酷'};
+  const dimLabels=['安全感锚点','规划频道','风险温度','能量来源'];
+  const dimLetters=[[S,'S','稳','闯'],[P,'P','谋','随'],[D,'D','守','攻'],[W,'W','暖','酷']];
+  const dimScores=[d1,d2,d3,d4];
+  const dimColors={'S':'#2d6a8b','V':'#b87a20','P':'#b87a20','F':'#3d7a5c','D':'#c44a5e','A':'#3d7a5c','W':'#b7476e','C':'#5b3a6e'};
 
-  // Type definitions
+  // Type database
   const types={
-    'ABFE':{name:'铁饭碗守护者',badge:'🏛',color:'#2d6a8b',
-      desc:'你是体制信仰的坚定拥护者。对稳定、安全和可预期的职业路径有天然的亲近感，享受按部就班、步步为营的成长节奏。在"考公热"席卷全国的当下，你是走在最前列的那个人。',
-      strengths:['风险意识强，财务决策稳健','规划能力出众，不打无准备之仗','共情力强，擅长协作型工作环境'],
-      careers:['公务员/事业单位','国企职能岗','教育机构','银行/保险后台'],
-      advice:'稳中求进是优势，但也要警惕过度规避风险导致机会流失。偶尔走出舒适区，尝试一个"小冒险"，也许会打开新世界。'},
-    'ABFD':{name:'精密架构师',badge:'🏗',color:'#5b3a6e',
-      desc:'稳定不是你的终点，精确才是。你既渴望体制的安全感，又迷恋系统和技术的秩序之美。你是能把"铁饭碗"玩出科技感的那个人——体制内的数字化推手。',
-      strengths:['逻辑清晰，系统性思维强','在规则中找最优解的能力突出','技术与管理的双重潜力'],
-      careers:['政务数字化/智慧城市','国企IT/数据岗','金融科技（FinTech）','科研院所/实验室'],
-      advice:'你的能力在体制内技术岗会大放异彩，但也许低估了自己在纯技术公司的竞争力。不妨做一次"体制外"的面试，至少心中有数。'},
-    'ABWE':{name:'温暖规划师',badge:'🌸',color:'#b7476e',
-      desc:'你是一个"带温度的系统"。既需要在安稳的框架中前行，又渴望旅途中有风景和人情。你可能是那个在体制内做社工、在国企做员工关怀的人——把稳定活出了温度。',
-      strengths:['极强的人际敏感度和沟通力','在稳定环境中能最大化创造力','善于平衡规则与灵活'],
-      careers:['高校行政/辅导员','社会组织/NGO','公共政策研究','企业HR/员工发展'],
-      advice:'你的"旷野"面让你在稳定岗位中脱颖而出，但别让它被日常琐碎消磨。定期给自己一个"冒险配额"——比如业余时间做一个小项目。'},
-    'ABWD':{name:'科技体制派',badge:'🔬',color:'#2d6a8b',
-      desc:'左手铁饭碗，右手黑科技。你信仰制度的力量，但工具必须是这个时代最锋利的。你是那个用AI写公文、用数据做决策的新一代体制精英。',
-      strengths:['前瞻性技术嗅觉+务实落地能力','在官僚体系中保持极客精神','理性决策，数据驱动'],
-      careers:['科技政策研究','数据局/统计局','央企研究院','军队文职技术岗'],
-      advice:'你的能力组合非常稀缺——既懂技术又耐得住体制的节奏。但要小心"大材小用"的困局，选择平台时，看它对技术的重视程度比看薪资更重要。'},
+'SPDW':{name:'铁饭碗守护者',icon:'🏛️',bg:'#2d6a8b',persona:'体制内六边形战士',
+  desc:'你是朋友圈里最让人羡慕的那个——早早锁定了方向，步步为营。你相信安全感和可预期性本身就是一种稀缺资源。在"考公人数超考研"的2026年，你走在了趋势之前。',
+  superpower:'在大多数人还在焦虑"毕业即失业"的时候，你已经把未来三年的晋升路径画好了。',
+  careers:['公务员/事业单位','国企职能岗','银行/保险后台','教育系统'],city:'北京',cp:'VFAW 星辰大海探险家',
+  rule:'稳定不等于无聊——在体制内保持对世界的好奇，是你最大的差异化竞争力。',
+  advice:'你的Plan A非常扎实，但Plan B也不妨备一个。偶尔参加一个完全不相关的活动或课程，给人生留一个"惊喜接口"。'},
 
-    'AIFE':{name:'稳健调适者',badge:'🌿',color:'#3d7a5c',
-      desc:'你不排斥稳定，但不被稳定定义。你的规划是"大方向+留白"，给自己保留了转身的空间。你是那种看似随和，实则内心有谱的人——稳得住，也转得动。',
-      strengths:['适应力强，能在变化中保持平衡','既不过度焦虑也不过度散漫','人缘好，团队润滑剂'],
-      careers:['中小学教育','公共事务管理','社区服务','行政/教务'],
-      advice:'"恰到好处"的佛系是你的优势，但有时也会让你在关键节点"差一口气"。找到一件你愿意为之拼尽全力的事，哪怕只有一件。'},
-    'AIFD':{name:'理性观察者',badge:'🦉',color:'#5b3a6e',
-      desc:'你是人群中最冷静的那个。不急着站队，不忙着表态，用数据和逻辑默默评估每一个选项。你追求稳定但不盲从，喜欢技术但不狂热——有温度的理性是你的底色。',
-      strengths:['独立思考，不易被带节奏','分析能力强，看问题一针见血','在技术与人之间找到平衡点'],
-      careers:['数据分析','市场研究','图书情报/档案管理','质量管理/审计'],
-      advice:'你的"冷静"有时会被误读为"冷漠"。偶尔向外界展示你的思考和热情，会帮你打开更多的人脉和机会。'},
-    'AIWE':{name:'灵活关怀者',badge:'🕊',color:'#b7476e',
-      desc:'你是团队中的"心灵捕手"。不执著于条条框框，但总能在关键时刻给对人温暖和支持。规则为你服务，而不是束缚你。你在灵活中保持善意，在变化中守住初心。',
-      strengths:['极强的情感洞察力','在非结构化环境中游刃有余','善于链接人与人'],
-      careers:['心理咨询/社工','自由职业（撰稿/设计/翻译）','用户研究/体验设计','社区营造/城市更新'],
-      advice:'你的灵活性让你能进入很多领域，但也容易"样样通样样松"。选择一个你最想深耕的方向，把"野"变成"专"。'},
-    'AIWD':{name:'破格极客',badge:'💡',color:'#c44a5e',
-      desc:'你不走寻常路，不是因为叛逆，而是因为你的思维本就不在常规轨道上。你不喜欢被体制束缚，但也不是无目的的流浪者。技术和创意是你的双翼，你在探索一种"自由且专业"的生活方式。',
-      strengths:['创造性问题解决能力','自学能力强，快速掌握新工具','独立工作能力突出'],
-      careers:['自由开发者/独立开发者','科技自媒体/知识付费','远程办公/数字游民','AI产品/创业'],
-      advice:'自由是好事，但完全的自由有时意味着"没有杠杆"。找到一个能放大你个人能力的平台或社群，你的价值会被更多人看见。'},
+'SPDW_b':{name:'铁饭碗守护者',icon:'🏛️',bg:'#2d6a8b',persona:'体制内六边形战士',
+  desc:'你是朋友圈里最让人羡慕的那个——早早锁定了方向，步步为营。你相信安全感和可预期性本身就是一种稀缺资源。在"考公人数超考研"的2026年，你走在了趋势之前。',
+  superpower:'在大多数人还在焦虑"毕业即失业"的时候，你已经把未来三年的晋升路径画好了。',
+  careers:['公务员/事业单位','国企职能岗','银行/保险后台','教育系统'],city:'北京',cp:'VFAW 星辰大海探险家',
+  rule:'稳定不等于无聊——在体制内保持对世界的好奇，是你最大的差异化竞争力。',
+  advice:'你的Plan A非常扎实，但Plan B也不妨备一个。偶尔参加一个完全不相关的活动或课程，给人生留一个"惊喜接口"。'},
 
-    'SBFE':{name:'务实开拓者',badge:'🚀',color:'#b87a20',
-      desc:'你有开拓的野心，也有落地的耐心。你不惧怕市场的风浪，但也不会裸泳——你的冒险是有Plan B的。这种"戴着镣铐跳舞"的能力让你在创业或市场搏击中比别人走得更远。',
-      strengths:['敢想敢干且执行力强','风险收益比判断力精准','善于在团队中担任推动者角色'],
-      careers:['创业公司早期员工','项目管理/产品经理','企业管理咨询','连锁加盟/实体创业'],
-      advice:'你的平衡感很强，但有时Plan B的过度准备会拖慢Plan A的节奏。给"冲动"留一点空间——最好的机会往往不等人把所有准备做完。'},
-    'SBFD':{name:'战略建构者',badge:'🏰',color:'#2d6a8b',
-      desc:'你不是赌徒，你是建筑师。你看得见远方，也画得出蓝图。你敢于进入市场搏杀，但每一步都有精密的推演。你是那种"三年上市、五年退出"的计划制定者。',
-      strengths:['宏大视野与细节把控并存','极强的行业分析能力','技术+商业的双重直觉'],
-      careers:['科技创业（SaaS/平台型）','风险投资/私募','战略咨询','技术管理/CTO路线'],
-      advice:'你的计划性让你在创业时比大多数人成功率高，但也要警惕"纸上谈兵"。最好的验证是——现在就去和10个目标用户聊一聊。'},
-    'SBWE':{name:'社会创新家',badge:'🌈',color:'#b7476e',
-      desc:'你不只想赚钱，还想让世界变好一点点。你的开拓精神指向的不是个人财富，而是社会价值。你可能是那个用商业模式解决社会问题的人——社会企业的天然创始人。',
-      strengths:['价值驱动的强大内驱力','善于链接跨界资源','共情力+执行力=稀缺组合'],
-      careers:['社会企业/共益企业','公益基金会/影响力投资','教育创新/教育科技','社区经济/银发经济'],
-      advice:'情怀让你出发，但可持续的商业模式让你走远。不要羞于谈钱——一个赚钱的社会企业比一个死掉的理想更有力量。'},
-    'SBWD':{name:'数字游侠',badge:'⚡',color:'#c44a5e',
-      desc:'你是游走于前沿的自由灵魂。技术和冒险是你的双重引擎——你不喜欢被任何东西束缚，不管是体制还是传统行业框架。远程工作、数字游民、独立创客，这些词写的就是你。',
-      strengths:['技术能力+冒险精神的稀缺组合','在新兴领域有天然的先发优势','独立作战和快速迭代能力'],
-      careers:['Web3/区块链/去中心化','独立SaaS产品','跨境电商/AI电商','数字游民/全球远程办公'],
-      advice:'你是"新经济"的天然原住民，但独立作战有天花板。找到2-3个志同道合的伙伴，你们能撬动的远大于一个人的力量。'},
+'SPDC':{name:'精密架构师',icon:'🏗️',bg:'#5b3a6e',persona:'用代码写公文的体制极客',
+  desc:'左手铁饭碗，右手黑科技。你信仰规则和制度的力量，但工具必须是这个时代最锋利的。在政务数字化浪潮中，你是那个"懂技术又坐得住"的稀缺人才。',
+  superpower:'能把最枯燥的流程自动化，把最复杂的系统拆解得井井有条。',
+  careers:['政务数字化/智慧城市','国企IT/数据岗','金融科技','科研院所'],city:'深圳',cp:'VFDC 破格黑客',
+  rule:'在体制内保持极客精神，但别忘了偶尔抬起头来看看窗外——技术之外还有政治和人心。',
+  advice:'你的技术能力在体制内是降维打击，但要小心"温水煮青蛙"。每季度做一次外部面试，保持市场感知。'},
 
-    'SIFE':{name:'自由园丁',badge:'🎨',color:'#3d7a5c',
-      desc:'你的自由不是逃离，而是选择——选择在喜欢的时间、喜欢的地点、和喜欢的人一起做事。你像园丁一样耐心培育自己的事业，不急不躁，静待花开。',
-      strengths:['在低压环境中产出高质量作品','生活与工作的自然融合能力','人际关系的滋养者'],
-      careers:['自媒体/内容创作者','手工艺/独立设计','民宿/小型餐饮创业','自由教育培训'],
-      advice:'"园丁"的慢节奏在今天很稀缺也很珍贵，但要建立一个稳定的客户/粉丝基础。把你的作品或服务"产品化"——让爱你的人能反复购买。'},
-    'SIFD':{name:'冷静冒险家',badge:'🏔',color:'#5b3a6e',
-      desc:'你的内心燃烧着探索的火焰，但表面波澜不惊。你是用数据做决策的冒险者——挑战未知，但不靠运气靠逻辑。你的冒险是"算过的"，不是"赌的"。',
-      strengths:['理性冒险——最稀缺的决策风格','独立判断力+技术能力的双重保障','在混乱中建立秩序'],
-      careers:['量化金融/算法交易','AI创业/技术创业','网络安全/白帽黑客','期货/大宗商品交易'],
-      advice:'你的冷静让周围的人信任你的判断，但也可能让人觉得你"太冷"。偶尔展示你的passion——投资人投的不仅是项目，也是人。'},
-    'SIWE':{name:'斜杠生活家',badge:'✨',color:'#b7476e',
-      desc:'你的人生不是一条直线，而是一幅拼贴画。你拥抱每一种可能性——今天做博主、明天做咨询、后天搞活动。你不是"不定性"，你是"不定于一"。多元本身就是你的职业策略。',
-      strengths:['极强的适应力和快速学习能力','在不同身份间自如切换','天然的个人品牌基因'],
-      careers:['斜杠青年/多重职业','生活方式博主/个人IP','活动策划/社群运营','体验式消费创业'],
-      advice:'斜杠人生很精彩，但要确保至少有一条"杠"能带来稳定收入。当你把多元变成方法论而非随机游走时，你的不可替代性就出现了。'},
-    'SIWD':{name:'星辰大海探险家',badge:'🌌',color:'#c44a5e',
-      desc:'同学，你可能是这个测试里最"野"的那一个。你不在意别人的路怎么走，因为你打算自己开创一条。体制、传统、按部就班——这些词和你的关系就像水和油。你是新世界的原住民，旧世界的规则不适用于你。',
-      strengths:['无限可能性的开拓者','技术+冒险+即兴=破坏性创新潜力','不受任何框架限制的创造力'],
-      careers:['前沿科技创业（AI/航天/生物科技）','独立游戏/VR/元宇宙','全球数字游民','任何还不存在的职业'],
-      advice:'你的上限极高，但下限也可能很低。给自己设一个"止损线"和"时间节点"——比如"两年后如果月入不过万就调整方向"。这不是妥协，是为下一次起飞储备燃料。'}
+'SPAW':{name:'温暖规划师',icon:'🌸',bg:'#b7476e',persona:'在体制内做有温度的事',
+  desc:'你大概是对"铁饭碗"最浪漫的诠释者——稳定的工作不是为了躺平，而是为了有更多精力去温暖他人。你是那个在体制内做社工、在企业做员工关怀的人。',
+  superpower:'在冷冰冰的制度里创造人情味——同事离职时哭得最凶的人大概率是你。',
+  careers:['高校行政/辅导员','社会组织/NGO','公共政策研究','企业HR/员工关怀'],city:'成都',cp:'VPAW 斜杠生活家',
+  rule:'温暖不是软弱——它是你最锋利的武器。但要记得先温暖自己。',
+  advice:'你的共情力让你在任何团队都是"粘合剂"，但别让它成为别人推活的理由。学会温柔而坚定地说"不"。'},
+
+'SPAC':{name:'科技体制派',icon:'🔬',bg:'#2d6a8b',persona:'体制内的AI原住民',
+  desc:'你证明了"稳定"和"前沿"并不矛盾。用AI写材料、用数据做决策，你是新一代体制精英的模板。',
+  superpower:'在别人还在手写会议纪要的时候，你已经用AI生成了带数据分析的完整报告。',
+  careers:['科技政策研究','数据局/统计局','央企研究院','军队文职技术岗'],city:'杭州',cp:'VFAC 数字游侠',
+  rule:'在体制内玩技术，要记住：技术是手段，不是目的。理解体制的逻辑比写出完美代码更重要。',
+  advice:'你的能力组合极度稀缺——既懂技术又耐得住体制节奏。选择平台时，看它对技术的投入比看级别更重要。'},
+
+'SFDW':{name:'稳健调适者',icon:'🌿',bg:'#3d7a5c',persona:'大方向+留白的平衡艺术家',
+  desc:'你不排斥稳定，但不被它定义。你有方向，但不把每一步都写死。在焦虑弥漫的毕业季，你是那个"稳得住，也转得动"的稀有物种。',
+  superpower:'在变化中保持从容——室友焦虑到失眠的时候，你通常睡得很香。',
+  careers:['中小学教育','公共事务管理','社区服务','行政/教务'],city:'杭州',cp:'SFDW 稳健调适者',
+  rule:'你的松弛感是这个时代最稀缺的情绪价值——保持住，它会是你最大的职场魅力。',
+  advice:'"恰到好处"的佛系很难得，但偶尔也需要一个全力以赴的目标来激活自己。'},
+
+'SFDC':{name:'理性观察者',icon:'🦉',bg:'#5b3a6e',persona:'数据时代的冷静大脑',
+  desc:'你是人群中最安静的那一个——不急着站队、不忙着表态，默默用数据评估每一个选项。当别人在朋友圈转发焦虑文章时，你在默默分析行业报告。',
+  superpower:'别人被情绪裹挟的时候，你已经在用Excel拉数据验证直觉了。',
+  careers:['数据分析/商业分析','市场研究','质量管理/审计','图书情报/档案'],city:'深圳',cp:'SFAC 冷静冒险家',
+  rule:'你的理性让人信赖，但偶尔展示你的情绪和热情也很重要——人不是投资标的，他们需要感受到你的温度。',
+  advice:'冷静是你的超级武器，但过度冷静会让你错过一些"看起来不划算但对的事情"。'},
+
+'SFAW':{name:'灵活关怀者',icon:'🕊️',bg:'#b7476e',persona:'不走寻常路的温暖派',
+  desc:'规则为你服务，而不是束缚你。你善于在非结构化的环境中找到方向，同时还能顺手温暖身边的人。你是那个"明明可以靠编制吃饭，偏要去做自由社工"的人。',
+  superpower:'在任何混乱的环境里都能迅速找到"对的人"和"对的资源"。',
+  careers:['心理咨询/社工','自由职业（撰稿/设计/翻译）','用户研究/体验设计','社区营造'],city:'大理',cp:'VFAC 数字游侠',
+  rule:'你的灵活性让你能进入很多领域——选一个最想深耕的，把"野"变成"专"。',
+  advice:'自由给了你丰富的体验，但也带来了"样样通样样松"的风险。给自己两年时间，在某个细分领域建立不可替代性。'},
+
+'SFAC':{name:'破格极客',icon:'💡',bg:'#c44a5e',persona:'规则打破者+技术发烧友',
+  desc:'你不走寻常路，不是因为叛逆，而是你的脑回路本就不在常规轨道上。你不排斥稳定，但"稳定"在你眼里不是公务员，而是"有一项无人能替代的技能"。',
+  superpower:'自学三天的新工具，比大多数人用三年的还熟练。',
+  careers:['自由开发者/独立开发','科技自媒体/知识付费','远程办公/数字游民','AI产品/技术创业'],city:'远程/全球',cp:'SPAC 科技体制派',
+  rule:'自由是你的氧气，但完全的散漫可能是你的毒药。给自己设"交付节点"，哪怕没有人催你。',
+  advice:'找一个能放大你个人能力的平台或社群，你的价值会被更多人看见。'},
+
+'VPDW':{name:'务实开拓者',icon:'🚀',bg:'#b87a20',persona:'戴着镣铐跳舞的冒险家',
+  desc:'你有开拓的野心，也有落地的耐心。你的冒险是有Plan B的。在创业大军中，你是更难死掉的那一个——因为你在起飞前已经画好了降落伞。',
+  superpower:'敢想+敢干+还会算账——这组合在创业者群体里百里挑一。',
+  careers:['创业公司早期员工','项目管理/产品经理','管理咨询','连锁加盟/实体创业'],city:'广州',cp:'SPDW 铁饭碗守护者',
+  rule:'Plan B是你的安全网，但别让它变成拖延行动的借口。最好的机会往往不等你准备好所有。',
+  advice:'你的平衡力很强。建议每年做一件"没有Plan B的事"，训练在不确定性中快速决策的肌肉。'},
+
+'VPDC':{name:'战略建构者',icon:'🏰',bg:'#2d6a8b',persona:'三年上市五年退出的计划狂人',
+  desc:'你不是赌徒，你是建筑师。你敢进入市场搏杀，但每一步都有精密的推演。你可能是那种大学时就在为创业写商业计划书、还真的拉到了种子轮的人。',
+  superpower:'在别人看到"机会"的时候，你已经看到了"三年后的退出路径"。',
+  careers:['科技创业（SaaS/平台型）','VC/PE投资','战略咨询','技术管理/CTO路线'],city:'上海',cp:'VPAC 数字游侠',
+  rule:'计划是你的核心竞争力，但要记住：市场不会按你的计划走。保留30%的灵活度。',
+  advice:'你的商业嗅觉+规划能力很强。现在就去和10个目标用户聊一聊——最好的验证永远来自真实的反馈。'},
+
+'VPAW':{name:'社会创新家',icon:'🌈',bg:'#b7476e',persona:'用商业模式解决社会问题的人',
+  desc:'你不只想赚钱——你想让世界变好一点点。你的驱动力来自"看见了问题，不能不管"。你可能是那个在城中村开社区图书馆、用AI帮农户卖水果的人。',
+  superpower:'情怀+执行力+商业头脑——这三者同框的概率极低，而你做到了。',
+  careers:['社会企业/共益企业','公益基金会/影响力投资','教育创新/EdTech','社区经济/银发经济'],city:'成都',cp:'SPAW 温暖规划师',
+  rule:'情怀让你出发，可持续的商业模式让你走远。不羞于谈钱——一个赚钱的社会企业比一个死掉的理想有力量一万倍。',
+  advice:'找到同样"想改变点什么"的2-3个人，你们的化学反应会远超单打独斗。'},
+
+'VPAC':{name:'数字游侠',icon:'⚡',bg:'#c44a5e',persona:'技术和自由的双料原住民',
+  desc:'你对"工作"的定义可能是这一代人里最先锋的——远程、异步、全球化。你不认为朝九晚五就是"正经工作"，也不认为稳定就是一种美德。',
+  superpower:'一台笔记本+WiFi=一个年入七位数的微型跨国公司。',
+  careers:['Web3/区块链/DeFi','独立SaaS创业','跨境电商/AI电商','数字游民/全球远程'],city:'远程/全球',cp:'SPDC 精密架构师',
+  rule:'自由很酷，但孤独是代价。找到你的"数字部落"——一个能理解你生活方式的社群。',
+  advice:'独立作战有天花板。找2-3个能互补的合伙人，你们能撬动的远大于一个人的力量。'},
+
+'VF DW':{name:'自由园丁',icon:'🎨',bg:'#3d7a5c',persona:'慢慢来比较快的自由派',
+  desc:'你的自由不是逃离，而是选择——选择在喜欢的时间、喜欢的地点、和喜欢的人一起做事。不急不躁，像园丁一样耐心培育自己的事业。',
+  superpower:'把别人眼里的"不稳定"活成了一种令人羡慕的生活方式。',
+  careers:['自媒体/内容创作者','手工艺/独立设计','民宿/小型餐饮','自由教育/培训'],city:'大理',cp:'SFAW 灵活关怀者',
+  rule:'园丁的慢节奏在今天很珍贵，但要建立一个稳定的客户/粉丝基础。把你的作品"产品化"。',
+  advice:'你的"慢"是奢侈品，但要确保至少有一个收入来源是稳定的。"慢"是一种底气，不是拖延。'},
+
+'VFDC':{name:'冷静冒险家',icon:'🏔️',bg:'#5b3a6e',persona:'用数据做决策的探险者',
+  desc:'你的内心燃烧着探索的火焰，但表面波澜不惊。你不靠运气靠逻辑，挑战未知但每一步都是算过的。你可能是那个一边做量化交易一边爬雪山的人。',
+  superpower:'别人被FOMO驱动的时候，你在冷静地计算风险回报比。',
+  careers:['量化金融/算法交易','AI创业/技术创业','网络安全/白帽','大宗商品/期货交易'],city:'新加坡',cp:'SPDC 精密架构师',
+  rule:'冷静是你的武器，但偶尔让你的激情外露——投资人投的不仅是项目，也是"人"。',
+  advice:'你适合在"高风险高回报"的赛道上竞争，但要给自己设一个止损点。冒险不意味着不留退路。'},
+
+'VFAW':{name:'斜杠生活家',icon:'✨',bg:'#b7476e',persona:'人生是一幅拼贴画',
+  desc:'你的职业规划不是一条直线，而是一幅拼贴——今天做博主、明天搞咨询、后天策展。你不是"不定性"，你是"不定于一"。多元本身就是你的策略。',
+  superpower:'同时驾驭三个身份还不会精神分裂，这是你的天赋。',
+  careers:['斜杠青年/多重职业','生活方式博主/个人IP','活动策划/社群运营','体验式消费创业'],city:'上海',cp:'SPAW 温暖规划师',
+  rule:'斜杠很精彩，但确保有一条"杠"能带来稳定现金流。当多元变成方法论而非随机游走时，你的不可替代性就出现了。',
+  advice:'在众多的"杠"中找到一条主线——那个无论换多少身份都能积累复利的方向。'},
+
+'VFAC':{name:'星辰大海探险家',icon:'🌌',bg:'#c44a5e',persona:'新世界的原住民',
+  desc:'同学，你可能是这个测试里最"野"的那一个。你不在意别人的路怎么走，因为你打算自己开创。体制、传统、按部就班——这些词和你的关系就像水和油。',
+  superpower:'在没有任何参照物的情况下，依然能笃定地走自己的路。',
+  careers:['前沿科技创业','独立游戏/VR/元宇宙','全球数字游民','任何还不存在的职业'],city:'火星（开玩笑的，旧金山/深圳吧）',cp:'SPAC 科技体制派',
+  rule:'上限极高，下限也可能很低。给自己设一个"止损线"和"时间节点"——这不是妥协，是为下一次起飞储备燃料。',
+  advice:'你的前辈可能是Elon Musk那种人——但记住，Musk也有学位和第一桶金。先找到一个能让你活下去的"根据地"，再追求星辰大海。'}
   };
 
+  // Q25 adjusts code if borderline — if Q25=A(稳) and d1 is close to split, push to S
+  // For simplicity, we just use it to slightly modify the description tone
   const t=types[code];
-  const dimNames={
-    A:'稳锚',S:'扬帆',B:'蓝图',I:'即兴',F:'堡垒',W:'旷野',E:'共情',D:'解码'
-  };
-  const dimColors={A:'#2d6a8b',S:'#b87a20',B:'#b87a20',I:'#3d7a5c',F:'#c44a5e',W:'#3d7a5c',E:'#b7476e',D:'#5b3a6e'};
+
+  // Radar SVG
+  const maxScore=30;
+  const pts=[[0,-1],[0.95,-0.31],[0.59,0.81],[-0.59,0.81],[-0.95,-0.31]];
+  const scale=95;
+  const cx=130,cy=130,r=110;
+  const radarPts=dimScores.map((s,i)=>{
+    const ratio=s/maxScore;
+    return [(cx+pts[i][0]*r*ratio).toFixed(1),(cy+pts[i][1]*r*ratio).toFixed(1)];
+  });
+  const radarPoly=radarPts.map(p=>p[0]+','+p[1]).join(' ');
 
   document.getElementById('resultCard').innerHTML=`
-    <span class="type-badge" style="background:${t.color}20;color:${t.color}">${t.badge} ${code}</span>
+    <span class="type-badge" style="background:${t.bg}18;color:${t.bg}">${t.icon} 你的职场人设</span>
     <div class="type-code">${code}</div>
-    <div class="type-name">「${t.name}」</div>
-    <p class="type-desc">${t.desc}</p>
-    <div class="dims-display">
-      ${[['稳锚·扬帆',A,d1],['蓝图·即兴',B,d2],['堡垒·旷野',F,d3],['共情·解码',E,d4]].map(([label,letter,score])=>`
-        <div class="dim-item"><strong style="color:${dimColors[letter]}">${label.split('·')[0]}侧</strong> ${dimNames[letter]} · ${score}/20</div>
+    <div class="type-name">${t.name}</div>
+    <div class="type-persona">—— ${t.persona}</div>
+
+    <div class="radar-wrap"><svg viewBox="0 0 260 260" width="240" height="240">
+      <defs><radialGradient id="g"><stop offset="0%" stop-color="${t.bg}" stop-opacity="0.12"/><stop offset="100%" stop-color="${t.bg}" stop-opacity="0.02"/></radialGradient></defs>
+      ${[0.25,0.5,0.75,1].map(scale=>{
+        const pts_s=pts.map(p=>`${(cx+p[0]*r*scale).toFixed(1)},${(cy+p[1]*r*scale).toFixed(1)}`).join(' ');
+        return `<polygon points="${pts_s}" fill="none" stroke="#e5e0db" stroke-width="0.8"/>`;
+      }).join('')}
+      ${pts.map(p=>`<line x1="${cx}" y1="${cy}" x2="${(cx+p[0]*r).toFixed(1)}" y2="${(cy+p[1]*r).toFixed(1)}" stroke="#e5e0db" stroke-width="0.6"/>`).join('')}
+      <polygon points="${radarPoly}" fill="url(#g)" stroke="${t.bg}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      ${radarPts.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${t.bg}"/><text x="${(cx+pts[i][0]*(r+16)).toFixed(1)}" y="${(cy+pts[i][1]*(r+16)-4).toFixed(1)}" text-anchor="middle" font-size="10" fill="#555" font-weight="600">${dimLabels[i]}</text>`).join('')}
+    </svg></div>
+
+    <div class="dim-bars">
+      ${dimLetters.map(([l,ll,left,right],i)=>`
+        <div class="dim-bar">
+          <span class="dim-label" style="color:${dimColors[l]}">${dimLabels[i]}</span>
+          <span style="font-size:0.75em;width:24px;text-align:right;color:${dimColors[l]}">${left}</span>
+          <div class="dim-track"><div class="dim-fill" style="width:${dimScores[i]/maxScore*100}%;background:${dimColors[l]}"></div></div>
+          <span style="font-size:0.75em;width:24px;color:${dimColors[ll]}">${right}</span>
+          <span class="dim-val" style="color:${dimColors[l]}">${dimScores[i]}</span>
+        </div>
       `).join('')}
     </div>
-    <div class="type-section">
-      <h4>🌟 你的优势</h4>
-      <div class="tag-row">${t.strengths.map(s=>`<span>${s}</span>`).join('')}</div>
+
+    <p class="type-desc">${t.desc}</p>
+
+    <div class="info-grid">
+      <div class="info-item"><div class="info-label">🦸 超能力</div><div class="info-val" style="font-size:0.8em">${t.superpower}</div></div>
+      <div class="info-item"><div class="info-label">📍 适合城市</div><div class="info-val">${t.city}</div></div>
+      <div class="info-item"><div class="info-label">💑 最佳职场CP</div><div class="info-val" style="font-size:0.8em">${t.cp}</div></div>
+      <div class="info-item"><div class="info-label">⚔️ 生存法则</div><div class="info-val" style="font-size:0.8em">${t.rule}</div></div>
     </div>
-    <div class="type-section">
-      <h4>💼 适合行业</h4>
+
+    <div style="text-align:left;margin:8px 0">
+      <span style="font-size:0.78em;color:var(--muted);">💼 适合领域</span>
       <div class="tag-row">${t.careers.map(c=>`<span>${c}</span>`).join('')}</div>
     </div>
-    <div class="type-section">
-      <h4>💬 发展建议</h4>
-      <p style="font-size:0.88em;color:var(--text2);margin-top:4px">${t.advice}</p>
+
+    <div style="text-align:left;margin:8px 0">
+      <span style="font-size:0.78em;color:var(--muted);">💬 发展建议</span>
+      <p style="font-size:0.85em;color:var(--text2);margin-top:2px">${t.advice}</p>
     </div>
-    <p style="margin-top:16px;font-size:0.75em;color:var(--muted)">基于《当代女大学生创业就业趋势分析》研究数据构建 · 仅供娱乐参考</p>
+
+    <p style="margin-top:14px;font-size:0.72em;color:var(--muted)">基于《当代女大学生创业就业趋势分析》研究数据 · 仅供娱乐参考</p>
+
     <div class="share-row">
-      <button class="share-btn copy" onclick="copyResult('${code}','${t.name}')">📋 复制结果</button>
-      <button class="btn btn-secondary" style="font-size:0.85em;padding:8px 18px;border-radius:20px" onclick="document.getElementById('resultOverlay').classList.remove('show')">← 返回修改</button>
+      <button class="share-btn copy" onclick="share('${code}','${t.name}','${t.persona}')">📋 一键复制结果</button>
+      <button class="btn btn-ghost" style="font-size:0.85em;padding:9px 20px;border-radius:20px" onclick="document.getElementById('resultOverlay').classList.remove('show')">← 返回修改</button>
     </div>
   `;
   document.getElementById('resultOverlay').classList.add('show');
-  document.getElementById('resultOverlay').scrollIntoView({behavior:'smooth',block:'start'});
+  setTimeout(()=>document.getElementById('resultOverlay').scrollIntoView({behavior:'smooth',block:'start'}),100);
 }
 
-function copyResult(code,name){
-  const text=`🔮 我的「她势·职向力」职业人格：${code}「${name}」\n\n—— 基于当代女大学生创业就业趋势研究\n测测你的：https://woodrelfay.github.io/nusurvey/career-test`;
-  if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>alert('已复制！分享给你的朋友吧~'));}
-  else{alert(text);}
+function share(code,name,persona){
+  const t=`🔮 我的「职人图鉴·她」职业人格：${code}「${name}」\n✨ ${persona}\n\n—— Z世代女大学生职业人格测试\n你也来测测？👉 https://woodrelfay.github.io/nusurvey/career-test`;
+  if(navigator.clipboard){navigator.clipboard.writeText(t).then(()=>{const x=document.getElementById('toast');x.textContent='已复制！快去分享给你的朋友吧 ✨';x.classList.add('show');setTimeout(()=>x.classList.remove('show'),2500);});}
+  else{prompt('复制这段文字分享给朋友：',t);}
 }
 
 updateProgress();
